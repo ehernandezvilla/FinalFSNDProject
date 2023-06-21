@@ -1,5 +1,5 @@
 import os
-from decouple import config
+from decouple import config # Used for enviroment variables
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
