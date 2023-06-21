@@ -1,4 +1,5 @@
 import os
+from decouple import config
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -8,8 +9,8 @@ from flask import jsonify
 from models import db, setup_db, Domains 
 
 
-database_name = "FinalFSND"
-database_path = "postgresql://{}:{}@{}/{}".format('postgres', 'donip123', 'localhost:5432', database_name)
+database_name = config('DB_NAME')
+database_path = "postgresql://{}:{}@{}/{}".format('postgres', config('PASSWORD'), 'localhost:5432', database_name)
 
 
 # Function that create the app and return it
