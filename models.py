@@ -1,5 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
-from decouple import config
+from decouple import config # Used for enviroment variables
+from datetime import datetime
+
+
+
 
 db = SQLAlchemy()
 
@@ -22,7 +26,7 @@ class Domains(db.Model):
     description = db.Column(db.String, nullable=False)
     is_verified = db.Column(db.Boolean, nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now, nullable=True)
 
     def __init__(self, domain, description, is_verified, is_active, created_at):
         self.domain = domain
