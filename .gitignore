@@ -9,6 +9,10 @@ migrations/
 
 __pycache__/
 
-#Querys 
+# Querys 
 
 *.pgsql 
+
+# Workspaces 
+
+*.code-workspace
