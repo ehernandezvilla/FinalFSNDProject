@@ -29,7 +29,12 @@ def create_app(test_config=None):
     # Create the routes 
     @app.route('/')
     def index():
-        return 'Hello World!'
+        return 'Hello Mundo!'
+    
+    @app.route('/domains')
+    def get_domains():
+        domains = Domains.query.all()
+        return jsonify([domain.format() for domain in domains])
     
     return app # Return the already created app 
 

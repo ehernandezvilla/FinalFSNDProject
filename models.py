@@ -1,8 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, DateTime
 from decouple import config # Used for enviroment variables
-from datetime import datetime
-
-
+import datetime
+from sqlalchemy import Column, Integer, String, DateTime, TIMESTAMP, text
+from sqlalchemy.sql import text, func 
+from sqlalchemy.schema import FetchedValue
 
 
 db = SQLAlchemy()
@@ -16,24 +18,25 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
+    db.drop_all()
     db.create_all()
 
 class Domains(db.Model):
     __tablename__ = 'domains'
 
     id = db.Column(db.Integer, primary_key=True)
-    domain = db.Column(db.String, nullable=False)
+    domain = db.Column(db.String, nullable=False, unique=True) # Domain name has to be unique
     description = db.Column(db.String, nullable=False)
     is_verified = db.Column(db.Boolean, nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.now, nullable=True)
+    create_date = db.Column(db.DateTime, default=datetime.datetime.utcnow(), nullable=False)
 
-    def __init__(self, domain, description, is_verified, is_active, created_at):
+    def __init__(self, domain, description, is_verified, is_active, create_date):
         self.domain = domain
         self.description = description
         self.is_verified = is_verified
         self.is_active = is_active
-        self.created_at = created_at
+        self.last_updated = create_date
     
     def format(self):
         return {
@@ -42,7 +45,7 @@ class Domains(db.Model):
             'description': self.description,
             'is_verified': self.is_verified,
             'is_active': self.is_active,
-            'created_at': self.created_at
+            'last_updated': self.create_date
         }
     
     def insert(self):
