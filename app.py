@@ -31,19 +31,23 @@ def create_app(test_config=None):
     def index():
         return 'Hello Mundo!'
     
+    # Domain routes 
     @app.route('/domains')
     def get_domains():
         domains = Domains.query.all()
         return jsonify([domain.format() for domain in domains])
     
-    # @app.route('/domains/<int:id>')
-    # def get_domain(id):
-    #     domain = Domains.query.get(id)
-    #     return jsonify(domain.format())
+    @app.route('/domains/<int:id>')
+    def get_domain(id):
+        domain = Domains.query.get(id)
+        return jsonify(domain.format())
+    
+    # Phishing routes
+
     
     return app # Return the already created app 
 
-app = create_app    
+# app = create_app    
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)

@@ -36,7 +36,7 @@ class Domains(db.Model):
         self.description = description
         self.is_verified = is_verified
         self.is_active = is_active
-        self.last_updated = create_date
+        self.create_date = create_date
     
     def format(self):
         return {
@@ -45,7 +45,7 @@ class Domains(db.Model):
             'description': self.description,
             'is_verified': self.is_verified,
             'is_active': self.is_active,
-            'last_updated': self.create_date
+            'create_date': self.create_date
         }
     
     def insert(self):
@@ -60,22 +60,22 @@ class Domains(db.Model):
         db.session.commit()
 
 
-class Pishing(db.Model):
+class Phishing(db.Model):
     __tablename__ = 'pishing'
 
     id = db.Column(db.Integer, primary_key=True)
     domain_id = db.Column(db.Integer, db.ForeignKey('domains.id'), nullable=False)
     ip = db.Column(db.String, nullable=False)
-    pishing_url = db.Column(db.String, nullable=False)
+    phishing_url = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
     is_dangerous = db.Column(db.Boolean, nullable=False)
     submited_by = db.Column(db.String, nullable=False)
     create_date = db.Column(db.DateTime, default=datetime.datetime.utcnow(), nullable=False)
     
-    def __init__(self, domain_id, ip, pishing_url, description, is_dangerous, submited_by, create_date):
+    def __init__(self, domain_id, ip, phishing_url, description, is_dangerous, submited_by, create_date):
         self.domain_id = domain_id
         self.ip = ip
-        self.pishing_url = pishing_url
+        self.phishing_url = phishing_url
         self.description = description
         self.is_dangerous = is_dangerous
         self.submited_by = submited_by
@@ -86,7 +86,7 @@ class Pishing(db.Model):
             'id': self.id,
             'domain_id': self.domain_id,
             'ip': self.ip,
-            'pishing_url': self.pishing_url,
+            'phishing_url': self.phishing_url,
             'description': self.description,
             'is_dangerous': self.is_dangerous,
             'submited_by': self.submited_by,
