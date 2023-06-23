@@ -60,17 +60,17 @@ class Domains(db.Model):
         db.session.commit()
 
 
-    class Pishing(db.Model):
-        __tablename__ = 'pishing'
+class Pishing(db.Model):
+    __tablename__ = 'pishing'
 
-        id = db.Column(db.Integer, primary_key=True)
-        domain_id = db.Column(db.Integer, db.ForeignKey('domains.id'), nullable=False)
-        ip = db.Column(db.String, nullable=False)
-        pishing_url = db.Column(db.String, nullable=False)
-        description = db.Column(db.String, nullable=False)
-        is_dangerous = db.Column(db.Boolean, nullable=False)
-        submited_by = db.Column(db.String, nullable=False)
-        create_date = db.Column(db.DateTime, default=datetime.datetime.utcnow(), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    domain_id = db.Column(db.Integer, db.ForeignKey('domains.id'), nullable=False)
+    ip = db.Column(db.String, nullable=False)
+    pishing_url = db.Column(db.String, nullable=False)
+    description = db.Column(db.String, nullable=False)
+    is_dangerous = db.Column(db.Boolean, nullable=False)
+    submited_by = db.Column(db.String, nullable=False)
+    create_date = db.Column(db.DateTime, default=datetime.datetime.utcnow(), nullable=False)
     
     def __init__(self, domain_id, ip, pishing_url, description, is_dangerous, submited_by, create_date):
         self.domain_id = domain_id
@@ -104,4 +104,4 @@ class Domains(db.Model):
         db.session.delete(self)
         db.session.commit()
     
-    
+

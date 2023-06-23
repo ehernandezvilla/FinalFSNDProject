@@ -36,6 +36,11 @@ def create_app(test_config=None):
         domains = Domains.query.all()
         return jsonify([domain.format() for domain in domains])
     
+    # @app.route('/domains/<int:id>')
+    # def get_domain(id):
+    #     domain = Domains.query.get(id)
+    #     return jsonify(domain.format())
+    
     return app # Return the already created app 
 
 app = create_app    
