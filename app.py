@@ -1,5 +1,5 @@
 import os
-from decouple import config # Used for enviroment variables
+from decouple import config # Used for enviroment variables in replace of pyenv
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -33,17 +33,17 @@ def create_app(test_config=None):
         return 'FSND Project - AntiScam' 
         
     # Domain routes 
-    @app.route('/domains')
+    @app.route('/domains') # GET - Domains
     def get_domains():
         domains = Domains.query.all()
         return jsonify([domain.format() for domain in domains])
     
-    @app.route('/domains/<int:id>')
+    @app.route('/domains/<int:id>') # GET - Domain
     def get_domain(id):
         domain = Domains.query.get(id)
         return jsonify(domain.format())
     
-    @app.route('/domains', methods=['POST'])
+    @app.route('/domains', methods=['POST']) # POST - Domain id
     def add_domain():
         data = request.get_json()
 
@@ -68,13 +68,118 @@ def create_app(test_config=None):
             'create_date': domain.create_date.strftime('%Y-%m-%d %H:%M:%S') # Return date as string in this format
         }
     }), 201
+
+
+    @app.route('/domains/<int:id>', methods=['PATCH']) # PATCH - Domain
+    def update_domain(id):
+        data = request.get_json()
+        domain = Domains.query.get(id)
+        domain.domain = data['domain']
+        domain.description = data['description']
+        domain.is_active = data['is_active']
+        domain.is_verified = data['is_verified']
+        domain.create_date = datetime.strptime(data['create_date'], '%d-%m-%Y') # Adjusted for day-month-year format
+        db.session.commit()
+        
+        return jsonify({
+            'message': 'Domain updated',
+            'domain': {
+                'id': domain.id,
+                'domain': domain.domain,
+                'description': domain.description,
+                'is_active': domain.is_active,
+                'is_verified': domain.is_verified,
+                'create_date': domain.create_date.strftime('%Y-%m-%d %H:%M:%S') # Return date as string in this format
+            }
+        }), 200
     
+    @app.route('/domains/<int:id>', methods=['DELETE']) # DELETE - Domain
+    def delete_domain(id):
+        domain = Domains.query.get(id)
+        db.session.delete(domain)
+        db.session.commit()
+        
+        return jsonify({
+            'message': 'Domain deleted'
+        }), 200
+
+
     # Phishing routes
 
-    @app.route('/phishing')
+    @app.route('/phishing') # GET - Phishing
     def get_phishing():
         phishing = Phishing.query.all()
         return jsonify([phishing.format() for phishing in phishing])
+
+    @app.route('/phishing/<int:id>') # GET - Phishing id
+    def get_phishing_by_id(id):
+        phishing = Phishing.query.get(id)
+        return jsonify(phishing.format())
+    
+    @app.route('/phishing', methods=['POST']) # POST - Phishing
+    def add_phishing():
+        data = request.get_json()
+        phishing = Phishing(
+            domain_id = data['domain_id'],
+            description = data['description'],
+            ip = data['ip'],
+            is_dangerous = data['is_dangerous'],
+            phishing_url = data['phishing_url'],
+            submited_by = data['submited_by'],
+            create_date = datetime.strptime(data['create_date'], '%d-%m-%Y') # Adjusted for day-month-year format
+        )
+        db.session.add(phishing)
+        db.session.commit()
+        
+        return jsonify({
+        'message': 'New phishing domain added',
+        'phishing': {
+            'id': phishing.id,
+            'domain_id': phishing.domain_id,
+            'description': phishing.description,
+            'ip': phishing.ip,
+            'is_dangerous': phishing.is_dangerous,
+            'phishing_url': phishing.phishing_url,
+            'submited_by': phishing.submited_by,
+            'create_date': phishing.create_date.strftime('%Y-%m-%d %H:%M:%S') # Return date as string in this format
+                }
+        }), 201 
+    
+    @app.route('/phishing/<int:id>', methods=['PATCH']) # PATCH - Phishing
+    def update_phishing(id):
+        data = request.get_json()
+        phishing = Phishing.query.get(id)
+        phishing.domain_id = data['domain_id']
+        phishing.description = data['description']
+        phishing.ip = data['ip']
+        phishing.is_dangerous = data['is_dangerous']
+        phishing.phishing_url = data['phishing_url']
+        phishing.submited_by = data['submited_by']
+        phishing.create_date = datetime.strptime(data['create_date'], '%d-%m-%Y') # Adjusted for day-month-year format
+        db.session.commit()
+        
+        return jsonify({
+            'message': 'Phishing domain updated',
+            'phishing': {
+                'id': phishing.id,
+                'domain_id': phishing.domain_id,
+                'description': phishing.description,
+                'ip': phishing.ip,
+                'is_dangerous': phishing.is_dangerous,
+                'phishing_url': phishing.phishing_url,
+                'create_date': phishing.create_date.strftime('%Y-%m-%d %H:%M:%S') # Return date as string in this format
+                }
+            }), 200
+    
+    @app.route('/phishing/<int:id>', methods=['DELETE']) # DELETE - Phishing
+    def delete_phishing(id):
+        phishing = Phishing.query.get(id)
+        db.session.delete(phishing)
+        db.session.commit()
+        
+        return jsonify({
+            'message': 'Phishing domain deleted'
+        }), 200
 
 
     # Articles routes
@@ -84,7 +189,7 @@ def create_app(test_config=None):
         return jsonify([article.format() for article in articles])
 
 
-
+#### Section change ####
 
 # Return the already created app 
     return app 
