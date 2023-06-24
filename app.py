@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 from bottle import route
 from flask import jsonify
-from models import db, setup_db, Domains, Phishing
+from models import db, setup_db, Domains, Phishing, Articles
 
 
 database_name = config('DB_NAME')
@@ -50,8 +50,16 @@ def create_app(test_config=None):
         return jsonify([phishing.format() for phishing in phishing])
 
 
+    # Articles routes
+    @app.route('/articles')
+    def get_articles():
+        articles = Articles.query.all()
+        return jsonify([article.format() for article in articles])
+
+
+
+
     # Return the already created app 
-    
     return app 
 
 # app = create_app    
