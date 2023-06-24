@@ -1,12 +1,13 @@
 import os
 from decouple import config # Used for enviroment variables
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
-from bottle import route
-from flask import jsonify
 from models import db, setup_db, Domains, Phishing, Articles
+from flask import request
+from datetime import datetime
+
 
 
 database_name = config('DB_NAME')
@@ -29,8 +30,8 @@ def create_app(test_config=None):
     # Create the routes 
     @app.route('/')
     def index():
-        return 'Hello Mundo!'
-    
+        return 'FSND Project - AntiScam' 
+        
     # Domain routes 
     @app.route('/domains')
     def get_domains():
@@ -41,6 +42,32 @@ def create_app(test_config=None):
     def get_domain(id):
         domain = Domains.query.get(id)
         return jsonify(domain.format())
+    
+    @app.route('/domains', methods=['POST'])
+    def add_domain():
+        data = request.get_json()
+
+        domain = Domains(
+            domain = data['domain'],
+            description = data['description'],
+            is_active = data['is_active'],
+            is_verified = data['is_verified'],
+            create_date = datetime.strptime(data['create_date'], '%d-%m-%Y') # Adjusted for day-month-year format
+        )
+        db.session.add(domain)
+        db.session.commit()
+        
+        return jsonify({
+        'message': 'New domain added',
+        'domain': {
+            'id': domain.id,
+            'domain': domain.domain,
+            'description': domain.description,
+            'is_active': domain.is_active,
+            'is_verified': domain.is_verified,
+            'create_date': domain.create_date.strftime('%Y-%m-%d %H:%M:%S') # Return date as string in this format
+        }
+    }), 201
     
     # Phishing routes
 
@@ -59,7 +86,7 @@ def create_app(test_config=None):
 
 
 
-    # Return the already created app 
+# Return the already created app 
     return app 
 
 # app = create_app    

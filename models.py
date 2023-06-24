@@ -25,6 +25,7 @@ class Domains(db.Model):
     __tablename__ = 'domains'
 
     id = db.Column(db.Integer, primary_key=True)
+    # name = db.Column(db.String, nullable=False, unique=True) # Domain name has to be unique
     domain = db.Column(db.String, nullable=False, unique=True) # Domain name has to be unique
     description = db.Column(db.String, nullable=False)
     is_verified = db.Column(db.Boolean, nullable=False)
