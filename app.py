@@ -183,10 +183,77 @@ def create_app(test_config=None):
 
 
     # Articles routes
-    @app.route('/articles')
+    @app.route('/articles') # GET - Articles
     def get_articles():
         articles = Articles.query.all()
         return jsonify([article.format() for article in articles])
+    
+    @app.route('/articles/<int:id>') # GET - Articles id
+    def get_articles_by_id(id):
+        articles = Articles.query.get(id)
+        return jsonify(articles.format())
+    
+    @app.route('/articles', methods=['POST']) # POST - Articles
+    def add_articles():
+        data = request.get_json()
+        articles = Articles(
+            title = data['title'],
+            description = data['description'],
+            url = data['url'],
+            submited_by = data['submited_by'],
+            domain_id = data['domain_id'],
+            create_date = datetime.strptime(data['create_date'], '%d-%m-%Y') # Adjusted for day-month-year format
+        )
+        db.session.add(articles)
+        db.session.commit()
+        
+        return jsonify({
+        'message': 'New article added',
+        'article': {
+            'id': articles.id,
+            'domain_id': articles.domain_id,
+            'title': articles.title,
+            'description': articles.description,
+            'url': articles.url,
+            'submited_by': articles.submited_by,
+            'create_date': articles.create_date.strftime('%Y-%m-%d %H:%M:%S') # Return date as string in this format
+            }
+        }), 201
+
+    @app.route('/articles/<int:id>', methods=['PATCH']) # PATCH - Articles
+    def update_articles(id):
+        data = request.get_json()
+        articles = Articles.query.get(id)
+        articles.title = data['title']
+        articles.description = data['description']
+        articles.url = data['url']
+        articles.submited_by = data['submited_by']
+        articles.domain_id = data['domain_id']
+        articles.create_date = datetime.strptime(data['create_date'], '%d-%m-%Y') # Adjusted for day-month-year format
+        db.session.commit()
+        
+        return jsonify({
+            'message': 'Article updated',
+            'article': {
+                'id': articles.id,
+                'domain_id': articles.domain_id,
+                'title': articles.title,
+                'description': articles.description,
+                'url': articles.url,
+                'submited_by': articles.submited_by,
+                'create_date': articles.create_date.strftime('%Y-%m-%d %H:%M:%S') # Return date as string in this format
+                }
+            }), 200
+    
+    @app.route('/articles/<int:id>', methods=['DELETE']) # DELETE - Articles
+    def delete_articles(id):
+        articles = Articles.query.get(id)
+        db.session.delete(articles)
+        db.session.commit()
+        
+        return jsonify({
+            'message': 'Article deleted'
+        }), 200
 
 
 #### Section change ####
