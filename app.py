@@ -8,6 +8,7 @@ from models import db, setup_db, Domains, Phishing, Articles
 from flask import request
 from datetime import datetime
 
+from .auth import AuthError, requires_auth
 
 
 database_name = config('DB_NAME')
