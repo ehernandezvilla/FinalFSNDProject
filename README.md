@@ -1,6 +1,6 @@
-# FSND Final Proyect - EstafasPro
+# FSND Final Project - Antiscam
 
-Brief description or introduction of the project.
+This project is associated with the final part of the full stack nanodegree on Udacity
 
 ## Installation
 
