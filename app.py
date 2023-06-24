@@ -194,8 +194,11 @@ def create_app(test_config=None):
     # Articles routes
     @app.route('/articles') # GET - Articles
     def get_articles():
-        articles = Articles.query.all()
-        return jsonify([article.format() for article in articles])
+        try:
+            articles = Articles.query.all()
+            return jsonify([article.format() for article in articles])
+        except:
+            abort(404)
     
     @app.route('/articles/<int:id>') # GET - Articles id
     def get_articles_by_id(id):
