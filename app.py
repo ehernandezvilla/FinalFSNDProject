@@ -1,6 +1,6 @@
 import os
 from decouple import config # Used for enviroment variables in replace of pyenv
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -38,12 +38,16 @@ def create_app(test_config=None):
         domains = Domains.query.all()
         return jsonify([domain.format() for domain in domains])
     
-    @app.route('/domains/<int:id>') # GET - Domain
+    @app.route('/domains/<int:id>') # GET - Domain id
     def get_domain(id):
-        domain = Domains.query.get(id)
-        return jsonify(domain.format())
     
-    @app.route('/domains', methods=['POST']) # POST - Domain id
+        try:
+            domain = Domains.query.get(id)
+            return jsonify(domain.format())
+        except:
+            abort(404)
+    
+    @app.route('/domains', methods=['POST']) # POST - Domain
     def add_domain():
         data = request.get_json()
 
@@ -113,9 +117,14 @@ def create_app(test_config=None):
 
     @app.route('/phishing/<int:id>') # GET - Phishing id
     def get_phishing_by_id(id):
-        phishing = Phishing.query.get(id)
-        return jsonify(phishing.format())
-    
+        try:
+                
+            phishing = Phishing.query.get(id)
+            return jsonify(phishing.format())
+
+        except:
+            abort(404)
+
     @app.route('/phishing', methods=['POST']) # POST - Phishing
     def add_phishing():
         data = request.get_json()
@@ -190,8 +199,11 @@ def create_app(test_config=None):
     
     @app.route('/articles/<int:id>') # GET - Articles id
     def get_articles_by_id(id):
-        articles = Articles.query.get(id)
-        return jsonify(articles.format())
+        try:
+            articles = Articles.query.get(id)
+            return jsonify(articles.format())
+        except:
+            abort(404)
     
     @app.route('/articles', methods=['POST']) # POST - Articles
     def add_articles():
