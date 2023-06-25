@@ -16,3 +16,9 @@ __pycache__/
 # Workspaces 
 
 *.code-workspace
+
+# Node
+
+node_modules/
+package-lock.json
+package.json
