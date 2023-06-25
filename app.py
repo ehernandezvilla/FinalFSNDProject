@@ -8,7 +8,7 @@ from models import db, setup_db, Domains, Phishing, Articles
 from flask import request
 from datetime import datetime
 
-from .auth import AuthError, requires_auth
+from auth import AuthError, requires_auth
 
 
 database_name = config('DB_NAME')
@@ -28,17 +28,25 @@ def create_app(test_config=None):
     CORS(app)  
     db.init_app(app)
 
-    # Create the routes 
+    # Create the routes
+
+    # Home route 
     @app.route('/')
     def index():
         return 'FSND Project - AntiScam' 
         
     # Domain routes 
     @app.route('/domains') # GET - Domains
-    def get_domains():
-        domains = Domains.query.all()
-        return jsonify([domain.format() for domain in domains])
+    @requires_auth('get:domains') # General User
+    def get_domains(jwt):
+        try:
+            domains = Domains.query.all()
+            return jsonify([domain.format() for domain in domains])
     
+        except:
+            abort(422)
+
+
     @app.route('/domains/<int:id>') # GET - Domain id
     def get_domain(id):
     
@@ -49,7 +57,8 @@ def create_app(test_config=None):
             abort(404)
     
     @app.route('/domains', methods=['POST']) # POST - Domain
-    def add_domain():
+    @requires_auth('post:domains') # Admin
+    def add_domain(jwt):
         data = request.get_json()
 
         domain = Domains(
@@ -323,4 +332,4 @@ def create_app(test_config=None):
 # app = create_app    
 
 # if __name__ == '__main__':
-#     app.run(debug=True)
+#      app.run(debug=True)

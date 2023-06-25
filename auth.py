@@ -1,9 +1,10 @@
 import json
 from decouple import config # Used for enviroment variables in replace of pyenv
-from flask import request, __request_ctx_stack, abort
+from flask import request, abort, jsonify
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
+
 
 # Auth0 Config
 
@@ -30,7 +31,7 @@ def get_token_auth_header():
         raise AuthError({
             'code': 'authorization_header_missing',
             'description': 'Authorization header is expected.'
-            }, 401)
+            }, abort(401))
     
     parts = auth.split() # Split the header into parts
     
@@ -145,3 +146,4 @@ def requires_auth(permission=''):
             return f(payload, *args, **kwargs)
         return wrapper
     return requires_auth_decorator
+
