@@ -37,7 +37,7 @@ def create_app(test_config=None):
         
     # Domain routes 
     @app.route('/domains') # GET - Domains
-    def get_domains(jwt):
+    def get_domains():
         try:
             domains = Domains.query.all()
             return jsonify([domain.format() for domain in domains])
