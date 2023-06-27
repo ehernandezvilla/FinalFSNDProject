@@ -1,0 +1,8 @@
+# Enviroments 
+
+.env
+
+# Workspace
+
+*.code-workspace
+
