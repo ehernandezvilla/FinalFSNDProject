@@ -33,7 +33,7 @@ def create_app(test_config=None):
     # Home route 
     @app.route('/')
     def index():
-        return 'FSND Project - AntiScam' 
+        return 'Hey! Welcome to the FSND home project!' 
         
     # Domain routes 
     @app.route('/domains') # GET - Domains
