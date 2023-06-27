@@ -1,0 +1,25 @@
+# Enviroments 
+
+.env
+
+# Migrations 
+migrations/
+
+#Cache
+
+__pycache__/
+
+# Querys 
+
+*.pgsql 
+
+# Workspaces 
+
+*.code-workspace
+
+# Node
+
+node_modules/
+package-lock.json
+package.json
+
