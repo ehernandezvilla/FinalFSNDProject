@@ -1,5 +1,5 @@
 # FinalFSNDProject
 My final FSND Project - Udacity 
 
-#Backend > Python
-#Frontend > React
+# Backend > Python
+# Frontend > React
