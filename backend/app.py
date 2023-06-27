@@ -20,7 +20,6 @@ def create_app(test_config=None):
     # Create and configure the app 
     app = Flask(__name__)
     app.app_context().push()
-     
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     
