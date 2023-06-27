@@ -37,7 +37,6 @@ def create_app(test_config=None):
         
     # Domain routes 
     @app.route('/domains') # GET - Domains
-    @requires_auth('get:domains') # General User
     def get_domains(jwt):
         try:
             domains = Domains.query.all()
@@ -48,7 +47,8 @@ def create_app(test_config=None):
 
 
     @app.route('/domains/<int:id>') # GET - Domain id
-    def get_domain(id):
+    @requires_auth('get:domains') # User
+    def get_domain(jwt,id):
     
         try:
             domain = Domains.query.get(id)
@@ -85,7 +85,8 @@ def create_app(test_config=None):
 
 
     @app.route('/domains/<int:id>', methods=['PATCH']) # PATCH - Domain
-    def update_domain(id):
+    @requires_auth('patch:domains') # Admin
+    def update_domain(jwt, id):
         data = request.get_json()
         domain = Domains.query.get(id)
         domain.domain = data['domain']
@@ -108,7 +109,8 @@ def create_app(test_config=None):
         }), 200
     
     @app.route('/domains/<int:id>', methods=['DELETE']) # DELETE - Domain
-    def delete_domain(id):
+    @requires_auth('delete:domains') # Admin
+    def delete_domain(jwt, id):
         domain = Domains.query.get(id)
         db.session.delete(domain)
         db.session.commit()
@@ -126,7 +128,8 @@ def create_app(test_config=None):
         return jsonify([phishing.format() for phishing in phishing])
 
     @app.route('/phishing/<int:id>') # GET - Phishing id
-    def get_phishing_by_id(id):
+    @requires_auth('get:phishing') # User
+    def get_phishing_by_id(jwt, id):
         try:
                 
             phishing = Phishing.query.get(id)
@@ -136,7 +139,8 @@ def create_app(test_config=None):
             abort(404)
 
     @app.route('/phishing', methods=['POST']) # POST - Phishing
-    def add_phishing():
+    @requires_auth('post:phishing') # Admin
+    def add_phishing(jwt):
         data = request.get_json()
         phishing = Phishing(
             domain_id = data['domain_id'],
@@ -165,7 +169,8 @@ def create_app(test_config=None):
         }), 201 
     
     @app.route('/phishing/<int:id>', methods=['PATCH']) # PATCH - Phishing
-    def update_phishing(id):
+    @requires_auth('patch:phishing') # Admin
+    def update_phishing(jwt,id):
         data = request.get_json()
         phishing = Phishing.query.get(id)
         phishing.domain_id = data['domain_id']
@@ -191,7 +196,8 @@ def create_app(test_config=None):
             }), 200
     
     @app.route('/phishing/<int:id>', methods=['DELETE']) # DELETE - Phishing
-    def delete_phishing(id):
+    @requires_auth('delete:phishing') # Admin
+    def delete_phishing(jwt,id):
         phishing = Phishing.query.get(id)
         db.session.delete(phishing)
         db.session.commit()
@@ -211,7 +217,8 @@ def create_app(test_config=None):
             abort(404)
     
     @app.route('/articles/<int:id>') # GET - Articles id
-    def get_articles_by_id(id):
+    @requires_auth('get:articles') # User
+    def get_articles_by_id(jwt,id):
         try:
             articles = Articles.query.get(id)
             return jsonify(articles.format())
@@ -219,7 +226,8 @@ def create_app(test_config=None):
             abort(404)
     
     @app.route('/articles', methods=['POST']) # POST - Articles
-    def add_articles():
+    @requires_auth('post:articles') # Admin
+    def add_articles(jwt):
         data = request.get_json()
         articles = Articles(
             title = data['title'],
@@ -246,7 +254,8 @@ def create_app(test_config=None):
         }), 201
 
     @app.route('/articles/<int:id>', methods=['PATCH']) # PATCH - Articles
-    def update_articles(id):
+    @requires_auth('patch:articles') # Admin
+    def update_articles(jwt,id):
         data = request.get_json()
         articles = Articles.query.get(id)
         articles.title = data['title']
@@ -271,7 +280,8 @@ def create_app(test_config=None):
             }), 200
     
     @app.route('/articles/<int:id>', methods=['DELETE']) # DELETE - Articles
-    def delete_articles(id):
+    @requires_auth('delete:articles') # Admin
+    def delete_articles(jwt,id):
         articles = Articles.query.get(id)
         db.session.delete(articles)
         db.session.commit()
