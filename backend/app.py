@@ -137,6 +137,12 @@ def create_app(test_config=None):
         except:
             abort(404)
 
+    @app.route('/phishing/count')  # GET - Phishing count
+    def get_phishing_count():
+        count = Phishing.query.count()
+        return jsonify({'count': count})
+
+
     @app.route('/phishing', methods=['POST']) # POST - Phishing
     @requires_auth('post:phishing') # Admin
     def add_phishing(jwt):
