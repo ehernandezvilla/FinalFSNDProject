@@ -3,10 +3,6 @@
     padding: 20px;
   }
   
-  .articles-container h2 {
-    margin-bottom: 20px;
-  }
-  
   .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -43,22 +39,24 @@
   }
   
   .placeholder-image {
-    width: 30%;
-    height: 30%;
-    margin: 10%;
-    background-color: #f0f0f0;
     display: flex;
-    align-items: center;
     justify-content: center;
-  }
-  
-  .placeholder-image svg {
-    width: 30%;
-    height: 30%;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    margin: 10px;
     fill: #ccc;
   }
   
-  .articles-heading {
+  
+   .articles-title {
     text-align: center;
+  }
+  
+  .placeholder-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Ajusta el tamaño según tus necesidades */
   }
   
