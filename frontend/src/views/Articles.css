@@ -1,0 +1,46 @@
+.articles-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  
+  .article img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .article-info h3 {
+    margin-bottom: 5px;
+  }
+  
+  .article-info p {
+    margin-bottom: 10px;
+  }
+  
+  .load-more-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .load-more-button:hover {
+    background-color: #555;
+  }
+  

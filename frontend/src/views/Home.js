@@ -7,6 +7,7 @@ import icon3 from '../assets/images/22.-Cyber-Security.svg';
 import chart from '../assets/images/image_bkMNXGZ4_1687913705669_raw.jpg';
 import './Home.css'; // Importamos el archivo de estilos CSS
 import Footer from './Footer'; // Importamos el componente Footer
+import Articles from './Articles'; // Importamos el componente Articles
 
 const Home = () => {
   return (
