@@ -4,10 +4,9 @@ import logo from '../assets/images/logo.jpg';
 import icon1 from '../assets/images/17.-Cloud.svg';
 import icon2 from '../assets/images/23.-Going-Online.svg';
 import icon3 from '../assets/images/22.-Cyber-Security.svg';
-import chart from '../assets/images/image_bkMNXGZ4_1687913705669_raw.jpg';
 import './Home.css'; // Importamos el archivo de estilos CSS
 import Footer from './Footer'; // Importamos el componente Footer
-import Articles from './Articles'; // Importamos el componente Articles
+import Articles from './Articles';
 
 const Home = () => {
   return (
@@ -16,7 +15,7 @@ const Home = () => {
         <img src={logo} alt="Logo" className="logo" />
         <p>Hey! Welcome to the FSND home project!</p>
         <p>This is a simple CRUD app built with React and Flask.</p>
-      </div>
+      </div> 
       <div className="grid-container">
         <div>
           <img src={icon1} alt="Icon 1" className="icon" />
@@ -47,8 +46,9 @@ const Home = () => {
           </p>
         </div>
       </div>
-      
+      <Articles />
       <Footer />
+      
     </div>
   );
 };
