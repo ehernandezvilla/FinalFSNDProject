@@ -13,3 +13,12 @@
 # Phishing a
 
 pishing_example.py
+
+# database 
+
+data.sql 
+
+# cache
+
+__pycache__/
+
