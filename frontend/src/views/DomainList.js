@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from 'styled-components';
+import Footer from "./Footer";
 
 const DomainButton = styled.button`
   padding: 10px;
@@ -51,6 +52,7 @@ const DomainList = () => {
           <p>Is Verified: {domain.is_verified ? 'Verified' : 'Not Verified'}</p>
         </div>
       ))}
+      <Footer />
     </div>
   );
 };

@@ -10,6 +10,7 @@ const Nav = styled.nav`
   color: #fff;
   padding: 15px;
   padding-top: 10px;
+  font-family: 'Open Sans', sans-serif;
 `;
 
 const NavLink = styled(Link)`

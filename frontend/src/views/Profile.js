@@ -1,8 +1,8 @@
 // src/views/Profile.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useState, useEffect } from "react";
 import styled from 'styled-components';
+import Footer from "./Footer";
 
 const Avatar = styled.img`
   border-radius: 50%;
@@ -19,10 +19,25 @@ const Message = styled.div`
   color: #888;
 `;
 
+const ProfileContainer = styled.div`
+  margin-top: 20px;
+`;
+
+const ProfileButton = styled.button`
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #888;
+  cursor: pointer;
+`;
+
 const Profile = () => {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState("");
   const [permissions, setPermissions] = useState([]);
+  const [showToken, setShowToken] = useState(false);
 
   useEffect(() => {
     const getToken = async () => {
@@ -53,29 +68,30 @@ const Profile = () => {
     );
   }
 
+  const handleToggleToken = () => {
+    setShowToken(!showToken);
+  };
+
   return (
-    <div>
+    <ProfileContainer>
       <Avatar src={user.picture} alt="Profile" />
       <h2>{user.name}</h2>
       <p>{user.email}</p>
       <h3>Token Data</h3>
-      <ul>
-        {Object.entries(user).map(([key, value]) => (
-          <li key={key}>
-            <strong>{key}:</strong> {JSON.stringify(value)}
-          </li>
-        ))}
-      </ul>
+      <ProfileButton onClick={handleToggleToken}>
+        {showToken ? "Hide JWT" : "Show JWT"}
+      </ProfileButton>
+      {showToken && <p>{token}</p>}
       <h3>Permissions</h3>
       <ul>
         {permissions.map((permission, index) => (
           <li key={index}>{permission}</li>
         ))}
       </ul>
-      <h3>JWT</h3>
-      <p>{token}</p>
-    </div>
+      <Footer />
+    </ProfileContainer>
   );
 };
 
 export default Profile;
+
