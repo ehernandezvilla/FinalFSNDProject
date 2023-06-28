@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './PhishingSearch.css';
 
 const PhishingSearch = () => {
-  const [domain, setDomain] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [phishingResult, setPhishingResult] = useState(null);
   const [error, setError] = useState(null);
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/search/${domain}`);
+      const response = await axios.get(`http://127.0.0.1:5000/phishing/search?search_term=${searchTerm}`);
       setPhishingResult(response.data);
       setError(null);
     } catch (error) {
-      setError(error.message);
       setPhishingResult(null);
+      setError('Error fetching phishing result: ' + error.message);
     }
   };
 
   return (
-    <div className="search-container">
+    <div className="phishing-search-container">
+      <h2>Phishing Search</h2>
       <form onSubmit={handleSearchSubmit}>
         <input
           type="text"
-          placeholder="Enter domain"
-          value={domain}
-          onChange={(e) => setDomain(e.target.value)}
+          placeholder="Enter phishing URL"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button type="submit">Search</button>
       </form>
+
       {phishingResult && (
         <div className="phishing-result-container">
           <h3 className="phishing-result-title">Phishing Result:</h3>
@@ -49,17 +53,19 @@ const PhishingSearch = () => {
               <strong>Phishing URL:</strong> {phishingResult.phishing_url}
             </p>
             <p>
-              <strong>Submitted by:</strong> {phishingResult.submited_by}
+              <strong>Submitted by:</strong> {phishingResult.submitted_by}
             </p>
           </div>
         </div>
       )}
+
       {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
 
 export default PhishingSearch;
+
 
 
 
