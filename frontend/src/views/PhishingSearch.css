@@ -1,0 +1,33 @@
+.phishing-search-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.phishing-search-form {
+  display: flex;
+  justify-content: center;
+}
+
+.phishing-search-input {
+  padding: 8px 50px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.phishing-search-button {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.phishing-search-button:hover {
+  background-color: #0056b3;
+}
+
+  
