@@ -1,41 +1,37 @@
 .phishing-container {
-    background-color: white;
-    padding: 20px;
+    margin-top: 20px;
   }
   
   .phishing-container h2 {
-    margin-bottom: 10px;
-  }
-  
-  .phishing-container p {
-    margin-bottom: 20px;
+    text-align: center;
   }
   
   .phishing-table {
     width: 100%;
-    border-collapse: collapse;
+    margin-bottom: 20px;
   }
   
   .phishing-table th,
   .phishing-table td {
     padding: 10px;
-    border: 1px solid #ccc;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
   }
   
-  .phishing-table th {
-    background-color: #f0f0f0;
-    text-align: left;
+  .toggle-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     font-weight: bold;
   }
   
-  .phishing-table a {
-    text-decoration: none;
-    color: #333;
+  .toggle-button:hover {
+    background-color: #f57c00;
   }
   
-  .see-more {
-    text-align: center;
-    margin-top: 20px;
-    font-style: italic;
-  }
   
