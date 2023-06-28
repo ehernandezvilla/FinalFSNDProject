@@ -62,7 +62,7 @@ class Domains(db.Model):
 
 
 class Phishing(db.Model):
-    __tablename__ = 'pishing'
+    __tablename__ = 'phishing'
 
     id = db.Column(db.Integer, primary_key=True)
     domain_id = db.Column(db.Integer, db.ForeignKey('domains.id'), nullable=False)
