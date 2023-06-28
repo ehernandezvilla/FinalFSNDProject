@@ -22,9 +22,8 @@ def create_app(test_config=None):
     app.app_context().push()
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    
-    migrate = Migrate(app, db, render_as_batch=False)
-    CORS(app)  
+    CORS(app)
+    migrate = Migrate(app, db, render_as_batch=False)  
     db.init_app(app)
 
     # Create the routes
@@ -141,7 +140,34 @@ def create_app(test_config=None):
     def get_phishing_count():
         count = Phishing.query.count()
         return jsonify({'count': count})
+    
+    @app.route('/phishing/search', methods=['POST']) # POST - Phishing search
+    def search_phishing():
+        search_data = request.get_json()
+        search_term = search_data.get('search_term')
+        search = f"%{search_term}%"
 
+        data = Phishing.query.filter(Phishing.phishing_url.ilike(search)).all()
+
+        items = []
+        for row in data:
+            aux = {
+                "id": row.id,
+                "create_date": row.create_date,
+                "description": row.description,
+                "is_dangerous": row.is_dangerous,
+                "ip": row.ip,
+                "phishing_url": row.phishing_url,
+                "submited_by": row.submited_by
+            }
+            items.append(aux)
+
+        response = {
+            "count": len(items),
+            "data": items
+        }
+
+        return jsonify(response)
 
     @app.route('/phishing', methods=['POST']) # POST - Phishing
     @requires_auth('post:phishing') # Admin

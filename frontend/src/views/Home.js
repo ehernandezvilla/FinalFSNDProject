@@ -8,6 +8,8 @@ import './Home.css'; // Importamos el archivo de estilos CSS
 import Footer from './Footer'; // Importamos el componente Footer
 import Articles from './Articles';
 import Phishing from './Phishing';
+import PhishingSearch from './PhishingSearch';
+
 
 const Home = () => {
   return (
@@ -17,6 +19,9 @@ const Home = () => {
         <p>Hey! Welcome to the FSND home project!</p>
         <p>This is a simple CRUD app built with React and Flask.</p>
       </div> 
+      <div className="search-container">
+      <PhishingSearch />
+      </div>
       <h2 className="heading-text">¿How can we help you?</h2>
       <div className="grid-container">
         <div>
