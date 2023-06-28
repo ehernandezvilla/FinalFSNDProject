@@ -7,6 +7,7 @@ import icon3 from '../assets/images/22.-Cyber-Security.svg';
 import './Home.css'; // Importamos el archivo de estilos CSS
 import Footer from './Footer'; // Importamos el componente Footer
 import Articles from './Articles';
+import Phishing from './Phishing';
 
 const Home = () => {
   return (
@@ -47,6 +48,7 @@ const Home = () => {
           </p>
         </div>
       </div>
+      <Phishing />
       <Articles />
       <Footer />
       
