@@ -3,26 +3,33 @@ import axios from 'axios';
 import './Phishing.css';
 
 const Phishing = () => {
-  const [submissions, setSubmissions] = useState([]);
+  const [phishes, setPhishes] = useState([]);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    const fetchSubmissions = async () => {
+    const fetchPhishes = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:5000/phishing');
-        setSubmissions(response.data);
+        setPhishes(response.data);
       } catch (error) {
-        console.error('Error fetching phishing submissions:', error);
+        console.error('Error fetching phishes:', error);
       }
     };
 
-    fetchSubmissions();
+    fetchPhishes();
   }, []);
 
-  return (
-    <div className="phishing-container">
-      <h2>Recent Submissions</h2>
-      <p>You can help! Sign in or register (free! fast!) to verify these suspected phishes.</p>
+  const handleToggleShowAll = () => {
+    setShowAll((prevState) => !prevState);
+  };
 
+  const renderPhishes = () => {
+    let displayedPhishes = phishes;
+    if (!showAll) {
+      displayedPhishes = displayedPhishes.slice(0, 10);
+    }
+
+    return (
       <table className="phishing-table">
         <thead>
           <tr>
@@ -32,23 +39,32 @@ const Phishing = () => {
           </tr>
         </thead>
         <tbody>
-          {submissions.slice(0, 10).map((submission) => (
-            <tr key={submission.id}>
-              <td>{submission.id}</td>
+          {displayedPhishes.map((phish) => (
+            <tr key={phish.id}>
+              <td>{phish.id}</td>
               <td>
-                <a href={submission.phishing_url} target="_blank" rel="noopener noreferrer">
-                  {submission.phishing_url}
+                <a href={phish.phishing_url} target="_blank" rel="noopener noreferrer">
+                  {phish.phishing_url}
                 </a>
               </td>
-              <td>{submission.submited_by}</td>
+              <td>{phish.submited_by}</td>
             </tr>
           ))}
         </tbody>
       </table>
+    );
+  };
 
-      <p className="see-more">See more suspected phishes...</p>
+  return (
+    <div className="phishing-container">
+      <h2>Recent Submissions</h2>
+      {renderPhishes()}
+      <button className="toggle-button" onClick={handleToggleShowAll}>
+        {showAll ? 'Show Less' : 'See more suspected phishes'}
+      </button>
     </div>
   );
 };
 
 export default Phishing;
+
