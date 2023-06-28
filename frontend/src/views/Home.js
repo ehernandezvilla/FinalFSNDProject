@@ -16,7 +16,7 @@ const Home = () => {
         <p>Hey! Welcome to the FSND home project!</p>
         <p>This is a simple CRUD app built with React and Flask.</p>
       </div> 
-      <Articles />
+      <h2 className="heading-text">What do we do</h2>
       <div className="grid-container">
         <div>
           <img src={icon1} alt="Icon 1" className="icon" />
@@ -47,6 +47,7 @@ const Home = () => {
           </p>
         </div>
       </div>
+      <Articles />
       <Footer />
       
     </div>

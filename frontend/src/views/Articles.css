@@ -1,46 +1,64 @@
 .articles-container {
+    background-color: white;
+    padding: 20px;
+  }
+  
+  .articles-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    justify-items: center;
   }
   
-  .article {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .article-card {
     text-align: center;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
   }
   
-  .article img {
+  .article-card img {
     width: 200px;
-    height: auto;
-    margin-bottom: 10px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
   }
   
-  .article-info h3 {
+  .article-card h3 {
+    margin-top: 10px;
     margin-bottom: 5px;
   }
   
-  .article-info p {
+  .article-card p {
     margin-bottom: 10px;
   }
   
-  .load-more-button {
+  .article-card a {
     display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
   }
   
-  .load-more-button:hover {
-    background-color: #555;
+  .placeholder-image {
+    width: 30%;
+    height: 30%;
+    margin: 10%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .placeholder-image svg {
+    width: 30%;
+    height: 30%;
+    fill: #ccc;
+  }
+  
+  .articles-heading {
+    text-align: center;
   }
   
