@@ -141,7 +141,7 @@ def create_app(test_config=None):
         count = Phishing.query.count()
         return jsonify({'count': count})
     
-    @app.route('/phishing/search', methods=['POST']) # POST - Phishing search
+    @app.route('/phishing/search', methods=['GET','POST']) # POST - Phishing search
     def search_phishing():
         search_data = request.get_json()
         search_term = search_data.get('search_term')

@@ -11,7 +11,7 @@ const PhishingSearch = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/phishing/search?search_term=${searchTerm}`);
+      const response = await axios.post('/phishing/search', { search_term: searchTerm }, { headers: { 'Content-Type': 'application/json' } });
       setPhishingResult(response.data);
       setError(null);
     } catch (error) {
@@ -22,49 +22,42 @@ const PhishingSearch = () => {
 
   return (
     <div className="phishing-search-container">
-      <h2>Phishing Search</h2>
-      <form onSubmit={handleSearchSubmit}>
-        <input
-          type="text"
-          placeholder="Enter phishing URL"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <form className="search-form" onSubmit={handleSearchSubmit}>
+        <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Enter domain to search" />
         <button type="submit">Search</button>
       </form>
 
+      {error && <p className="error-message">{error}</p>}
+
       {phishingResult && (
-        <div className="phishing-result-container">
-          <h3 className="phishing-result-title">Phishing Result:</h3>
-          <div className="phishing-result-details">
-            <p>
-              <strong>Create Date:</strong> {phishingResult.create_date}
-            </p>
-            <p>
-              <strong>Description:</strong> {phishingResult.description}
-            </p>
-            <p>
-              <strong>Is Dangerous:</strong> {phishingResult.is_dangerous ? 'Yes' : 'No'}
-            </p>
-            <p>
-              <strong>IP Address:</strong> {phishingResult.ip}
-            </p>
-            <p>
-              <strong>Phishing URL:</strong> {phishingResult.phishing_url}
-            </p>
-            <p>
-              <strong>Submitted by:</strong> {phishingResult.submitted_by}
-            </p>
-          </div>
+        <div className="result-container">
+          <h3 className="result-title">Phishing Result:</h3>
+          <p>
+            <strong>Create Date:</strong> {phishingResult.create_date}
+          </p>
+          <p>
+            <strong>Description:</strong> {phishingResult.description}
+          </p>
+          <p>
+            <strong>Is Dangerous:</strong> {phishingResult.is_dangerous ? 'Yes' : 'No'}
+          </p>
+          <p>
+            <strong>IP Address:</strong> {phishingResult.ip}
+          </p>
+          <p>
+            <strong>Phishing URL:</strong> {phishingResult.phishing_url}
+          </p>
+          <p>
+            <strong>Submitted by:</strong> {phishingResult.submitted_by}
+          </p>
         </div>
       )}
-
-      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
 
 export default PhishingSearch;
+
 
 
 
