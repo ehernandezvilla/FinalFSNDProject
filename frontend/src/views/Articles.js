@@ -31,7 +31,7 @@ const Articles = () => {
       <h2 className="articles-title">Latest Articles</h2>
 
       <div className="grid-container">
-        {articles.slice(0, 4).map((article) => (
+        {articles.slice(0, 2).map((article) => (
           <div key={article.id} className="article-card">
             {article.image ? (
               <img src={article.image} alt="Article" />
