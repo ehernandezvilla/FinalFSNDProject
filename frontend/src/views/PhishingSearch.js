@@ -94,7 +94,7 @@ const PhishingSearch = () => {
                 <strong>Phishing URL:</strong> {result.phishing_url}
               </p>
               <p>
-                <strong>Submitted by:</strong> {result.submitted_by}
+                <strong>Submitted by:</strong> {result.submited_by}
               </p>
             </div>
           ))}
