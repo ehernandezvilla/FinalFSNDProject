@@ -6,6 +6,7 @@ const PhishingSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [phishingResult, setPhishingResult] = useState([]);
   const [error, setError] = useState(null);
+  const [showLoadMore, setShowLoadMore] = useState(false);
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +21,14 @@ const PhishingSearch = () => {
       // Limitar la cantidad de resultados mostrados a 3
       const limitedResults = response.data.data.slice(0, 3);
       setPhishingResult(limitedResults);
+
+      // Mostrar el botón de carga adicional si hay más de 3 resultados
+      if (response.data.count > 3) {
+        setShowLoadMore(true);
+      } else {
+        setShowLoadMore(false);
+      }
+
       setError(null);
     } catch (error) {
       setPhishingResult([]);
@@ -38,6 +47,12 @@ const PhishingSearch = () => {
       // Obtener los resultados adicionales a partir del cuarto elemento
       const additionalResults = response.data.data.slice(3);
       setPhishingResult((prevResults) => [...prevResults, ...additionalResults]);
+
+      // Ocultar el botón de carga adicional si no hay más resultados disponibles
+      if (phishingResult.length + additionalResults.length >= response.data.count) {
+        setShowLoadMore(false);
+      }
+
       setError(null);
     } catch (error) {
       setError('Error fetching phishing result: ' + error.message);
@@ -83,11 +98,7 @@ const PhishingSearch = () => {
               </p>
             </div>
           ))}
-          {phishingResult.length > 3 && (
-            <p className="load-more">
-              <button onClick={handleLoadMore}>Load More</button>
-            </p>
-          )}
+          {showLoadMore && <button className="load-more" onClick={handleLoadMore}>Load More</button>}
         </div>
       )}
     </div>
@@ -95,6 +106,7 @@ const PhishingSearch = () => {
 };
 
 export default PhishingSearch;
+
 
 
 
