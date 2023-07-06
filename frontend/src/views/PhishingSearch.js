@@ -7,6 +7,7 @@ const PhishingSearch = () => {
   const [phishingResult, setPhishingResult] = useState([]);
   const [error, setError] = useState(null);
   const [showLoadMore, setShowLoadMore] = useState(false);
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
@@ -18,11 +19,9 @@ const PhishingSearch = () => {
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      // Limitar la cantidad de resultados mostrados a 3
       const limitedResults = response.data.data.slice(0, 3);
       setPhishingResult(limitedResults);
 
-      // Mostrar el botón de carga adicional si hay más de 3 resultados
       if (response.data.count > 3) {
         setShowLoadMore(true);
       } else {
@@ -30,6 +29,7 @@ const PhishingSearch = () => {
       }
 
       setError(null);
+      setSearchPerformed(true);
     } catch (error) {
       setPhishingResult([]);
       setError('Error fetching phishing result: ' + error.message);
@@ -44,11 +44,9 @@ const PhishingSearch = () => {
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      // Obtener los resultados adicionales a partir del cuarto elemento
       const additionalResults = response.data.data.slice(3);
       setPhishingResult((prevResults) => [...prevResults, ...additionalResults]);
 
-      // Ocultar el botón de carga adicional si no hay más resultados disponibles
       if (phishingResult.length + additionalResults.length >= response.data.count) {
         setShowLoadMore(false);
       }
@@ -73,7 +71,7 @@ const PhishingSearch = () => {
 
       {error && <p className="error-message">{error}</p>}
 
-      {phishingResult.length > 0 && (
+      {searchPerformed && phishingResult.length > 0 ? (
         <div className="result-container">
           <h3 className="result-title">Phishing Result:</h3>
           {phishingResult.map((result) => (
@@ -94,18 +92,22 @@ const PhishingSearch = () => {
                 <strong>Phishing URL:</strong> {result.phishing_url}
               </p>
               <p>
-                <strong>Submitted by:</strong> {result.submited_by}
+                <strong>Submitted by:</strong> {result.submitted_by}
               </p>
             </div>
           ))}
           {showLoadMore && <button className="load-more" onClick={handleLoadMore}>Load More</button>}
         </div>
-      )}
+      ) : searchPerformed && phishingResult.length === 0 ? (
+        <p>No se encontraron resultados en la búsqueda.</p>
+      ) : null}
     </div>
   );
 };
 
 export default PhishingSearch;
+
+
 
 
 
