@@ -54,7 +54,7 @@ const Phishing = () => {
                   {phish.phishing_url}
                 </a>
               </td>
-              <td>{phish.submitted_by}</td>
+              <td>{phish.submited_by}</td>
               <td>{phish.ip}</td>
               <td>{phish.create_date}</td>
               <td>{phish.is_dangerous ? 'Yes' : 'No'}</td>
