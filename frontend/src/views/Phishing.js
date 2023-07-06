@@ -5,6 +5,7 @@ import './Phishing.css';
 const Phishing = () => {
   const [phishes, setPhishes] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchPhishes = async () => {
@@ -20,7 +21,9 @@ const Phishing = () => {
   }, []);
 
   const handleToggleShowAll = () => {
-    setShowAll((prevState) => !prevState);
+    if (userLoggedIn) {
+      setShowAll((prevState) => !prevState);
+    }
   };
 
   const renderPhishes = () => {
@@ -36,6 +39,10 @@ const Phishing = () => {
             <th>ID</th>
             <th>URL</th>
             <th>Submitted by</th>
+            <th>IP Address</th>
+            <th>Create Date</th>
+            <th>Is Dangerous</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
@@ -47,7 +54,11 @@ const Phishing = () => {
                   {phish.phishing_url}
                 </a>
               </td>
-              <td>{phish.submited_by}</td>
+              <td>{phish.submitted_by}</td>
+              <td>{phish.ip}</td>
+              <td>{phish.create_date}</td>
+              <td>{phish.is_dangerous ? 'Yes' : 'No'}</td>
+              <td>{phish.description}</td>
             </tr>
           ))}
         </tbody>
@@ -55,16 +66,30 @@ const Phishing = () => {
     );
   };
 
+  useEffect(() => {
+    // Verificar si el usuario está autenticado (aquí puedes agregar tu lógica de autenticación)
+    const userIsLoggedIn = true; // Ejemplo: el usuario está autenticado
+    setUserLoggedIn(userIsLoggedIn);
+  }, []);
+
   return (
     <div className="phishing-container">
       <h2>Recent Submissions</h2>
       {renderPhishes()}
-      <button className="toggle-button" onClick={handleToggleShowAll}>
-        {showAll ? 'Show Less' : 'See more suspected phishes'}
-      </button>
+      {!userLoggedIn && (
+        <p className="login-message">Debes estar registrado para ver más resultados</p>
+      )}
+      {userLoggedIn && phishes.length > 15 && (
+        <button className="toggle-button" onClick={handleToggleShowAll}>
+          {showAll ? 'Show Less' : 'See more suspected phishes'}
+        </button>
+      )}
     </div>
   );
 };
 
 export default Phishing;
+
+
+
 
