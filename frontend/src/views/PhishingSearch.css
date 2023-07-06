@@ -1,32 +1,47 @@
 .phishing-search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
   margin-top: 20px;
 }
 
+.search-message {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: larger;
+}
+
+.search-wrapper {
+  background-color: #007bff;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
 .search-form {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0;
+  background-color: white;
 }
 
 .search-form input[type="text"] {
+  border: none;
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
   padding: 5px;
-  margin-right: 10px;
 }
 
 .search-form button {
+  background-color:salmon;
+  color: white;
+  border: none;
   padding: 5px 10px;
-}
-
-.error-message {
-  color: red;
-  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 15px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .result-container {
   margin-top: 20px;
+  text-align: left;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -35,14 +50,14 @@
 }
 
 .phishing-item {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.load-more {
-  margin-top: 10px;
+.error-message {
+  color: red;
+  margin-top: 20px;
 }
+
 
 
   

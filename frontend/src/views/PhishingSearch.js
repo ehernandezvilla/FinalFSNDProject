@@ -59,15 +59,18 @@ const PhishingSearch = () => {
 
   return (
     <div className="phishing-search-container">
-      <form className="search-form" onSubmit={handleSearchSubmit}>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Enter domain to search"
-        />
-        <button type="submit">Search</button>
-      </form>
+      <p className="search-message">Do you want to check a suspectful domain? Check here:</p>
+      <div className="search-wrapper">
+        <form className="search-form" onSubmit={handleSearchSubmit}>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Enter domain to search"
+          />
+          <button type="submit">Search</button>
+        </form>
+      </div>
 
       {error && <p className="error-message">{error}</p>}
 
@@ -92,7 +95,7 @@ const PhishingSearch = () => {
                 <strong>Phishing URL:</strong> {result.phishing_url}
               </p>
               <p>
-                <strong>Submitted by:</strong> {result.submitted_by}
+                <strong>Submitted by:</strong> {result.submited_by}
               </p>
             </div>
           ))}
