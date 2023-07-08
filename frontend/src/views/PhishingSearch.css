@@ -58,6 +58,16 @@
   margin-top: 20px;
 }
 
+.load-more {
+  background-color: salmon;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
 
-
-  
+.load-more:hover {
+  opacity: 0.8;
+}
