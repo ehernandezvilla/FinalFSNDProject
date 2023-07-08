@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
-import Footer from '../views/Footer';
+import Footer from './Footer';
 
 const FormContainer = styled.div`
   margin-top: 20px;
@@ -37,6 +37,11 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const ErrorMessage = styled.span`
+  color: red;
+  margin-top: 5px;
+`;
+
 const NewPhishingForm = () => {
   const { getAccessTokenSilently } = useAuth0();
   const [domainId, setDomainId] = useState('');
@@ -46,12 +51,15 @@ const NewPhishingForm = () => {
   const [phishingUrl, setPhishingUrl] = useState('');
   const [submittedBy, setSubmittedBy] = useState('');
   const [createDate, setCreateDate] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const token = await getAccessTokenSilently();
+
+      const formattedDate = createDate.replace(/\//g, '-'); // Reemplazar barras (/) por guiones (-) en la fecha
 
       const response = await axios.post(
         'http://127.0.0.1:5000/phishing',
@@ -62,7 +70,7 @@ const NewPhishingForm = () => {
           is_dangerous: isDangerous,
           phishing_url: phishingUrl,
           submited_by: submittedBy,
-          create_date: createDate
+          create_date: formattedDate
         },
         {
           headers: {
@@ -81,8 +89,14 @@ const NewPhishingForm = () => {
       setPhishingUrl('');
       setSubmittedBy('');
       setCreateDate('');
+      setErrorMessage('');
     } catch (error) {
       console.error('Error adding phishing domain:', error);
+      if (error.response && error.response.data && error.response.data.message) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage('An error occurred while adding the phishing domain. Please check if the domain_id is correct or check /domains');
+      }
     }
   };
 
@@ -112,8 +126,15 @@ const NewPhishingForm = () => {
         <Label>Submitted By:</Label>
         <Input type="text" value={submittedBy} onChange={(e) => setSubmittedBy(e.target.value)} />
 
-        <Label>Create Date:</Label>
-        <Input type="text" value={createDate} onChange={(e) => setCreateDate(e.target.value)} />
+        <Label>Create Date (DD/MM/YYYY):</Label>
+        <Input
+          type="text"
+          pattern="\d{2}/\d{2}/\d{4}"
+          value={createDate}
+          onChange={(e) => setCreateDate(e.target.value)}
+        />
+
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
 
         <Button type="submit">Submit</Button>
       </Form>
@@ -123,3 +144,7 @@ const NewPhishingForm = () => {
 };
 
 export default NewPhishingForm;
+
+
+
+
