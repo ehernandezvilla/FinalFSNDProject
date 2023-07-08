@@ -6,23 +6,40 @@ const Phishing = () => {
   const [phishes, setPhishes] = useState([]);
   const [showAll, setShowAll] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const fetchPhishes = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/phishing');
-        setPhishes(response.data);
+        const response = await axios.get('http://127.0.0.1:5000/phishing', {
+          params: { page: currentPage },
+        });
+        setPhishes(response.data.phishings);
+        setTotalPages(Math.ceil(response.data.total_phishings / 10)); // Assuming PHISHING_PER_PAGE = 10
       } catch (error) {
         console.error('Error fetching phishes:', error);
       }
     };
 
     fetchPhishes();
-  }, []);
+  }, [currentPage]);
 
   const handleToggleShowAll = () => {
     if (userLoggedIn) {
       setShowAll((prevState) => !prevState);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
     }
   };
 
@@ -54,7 +71,7 @@ const Phishing = () => {
                   {phish.phishing_url}
                 </a>
               </td>
-              <td>{phish.submited_by}</td>
+              <td>{phish.submitted_by}</td>
               <td>{phish.ip}</td>
               <td>{phish.create_date}</td>
               <td>{phish.is_dangerous ? 'Yes' : 'No'}</td>
@@ -79,6 +96,16 @@ const Phishing = () => {
       {!userLoggedIn && (
         <p className="login-message">Debes estar registrado para ver más resultados</p>
       )}
+      {userLoggedIn && totalPages > 1 && (
+        <div className="pagination-buttons">
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+            Previous Page
+          </button>
+          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+            Next Page
+          </button>
+        </div>
+      )}
       {userLoggedIn && phishes.length > 15 && (
         <button className="toggle-button" onClick={handleToggleShowAll}>
           {showAll ? 'Show Less' : 'See more suspected phishes'}
@@ -89,6 +116,7 @@ const Phishing = () => {
 };
 
 export default Phishing;
+
 
 
 
