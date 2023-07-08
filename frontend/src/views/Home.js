@@ -25,7 +25,7 @@ const Home = () => {
       <div className="search-container">
       <PhishingSearch />
       </div>
-      <h2 className="heading-text">¿How can we help you?</h2>
+      <h2 className="heading-text">How can we help you?</h2>
       <div className="grid-container">
         <div>
           <img src={icon1} alt="Icon 1" className="icon" />
