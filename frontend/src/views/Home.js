@@ -17,8 +17,10 @@ const Home = () => {
     <div className="home-container">
       <div className="logo-container">
         <img src={logo} alt="Logo" className="logo" />
-        <p>Hey! Welcome to the FSND home project!</p>
-        <p>This is a simple CRUD app built with React and Flask.</p>
+        <h1>¡Hey! Welcome to the FSND home project!</h1>
+        <p>This is a simple app for registering dangerous (phishing) domains and compare them against their real domains.</p>
+        <p><b>You can find the details of endpoints in the README file. There's just a few of them considerer for the frontend.</b></p>
+        <p>In some cases you'll need to be registered and authorized to use certain API's</p>
       </div> 
       <div className="search-container">
       <PhishingSearch />
