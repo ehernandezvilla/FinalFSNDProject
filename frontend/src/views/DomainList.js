@@ -30,7 +30,7 @@ const DomainList = () => {
       const responseData = await response.json();
 
       if (response.status === 200) {
-        setDomains(responseData);
+        setDomains(responseData.domains); // Extraer el array de dominios del objeto de respuesta
         setFetchError(null);
       }
     } catch (error) {
@@ -58,6 +58,7 @@ const DomainList = () => {
 };
 
 export default DomainList;
+
 
 
 
