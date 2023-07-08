@@ -15,6 +15,19 @@ database_name = config('DB_NAME')
 database_path = "postgresql://{}:{}@{}/{}".format('postgres', config('PASSWORD'), 'localhost:5432', database_name)
 
 
+PHISHING_PER_PAGE = 10
+
+def paginate_phishings(request, selection):
+    page = request.args.get('page', 1, type=int)
+    start = (page - 1) * PHISHING_PER_PAGE
+    end = start + PHISHING_PER_PAGE
+
+    phishings = [phishing.format() for phishing in selection]
+    current_phishings = phishings[start:end]
+
+    return current_phishings
+
+
 # Function that create the app and return it
 def create_app(test_config=None):
     # Create and configure the app 
@@ -122,8 +135,17 @@ def create_app(test_config=None):
 
     @app.route('/phishing') # GET - Phishing
     def get_phishing():
-        phishing = Phishing.query.all()
-        return jsonify([phishing.format() for phishing in phishing])
+        selection = Phishing.query.order_by(Phishing.id).all()
+        current_phishings = paginate_phishings(request, selection)
+
+        if len(current_phishings) == 0:
+            abort(404)
+        
+        return jsonify({
+            "success": True,
+            "phishings": current_phishings,
+            "total_phishings": len(selection)
+            })
 
     @app.route('/phishing/<int:id>') # GET - Phishing id
     @requires_auth('get:phishing') # User
@@ -137,7 +159,8 @@ def create_app(test_config=None):
             abort(404)
 
     @app.route('/phishing/count')  # GET - Phishing count
-    def get_phishing_count():
+    @requires_auth('get:phishing') # User
+    def get_phishing_count(jwt):
         count = Phishing.query.count()
         return jsonify({'count': count})
     
