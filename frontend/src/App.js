@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './views/Home';
 import Profile from './views/Profile';
 import DomainList from './views/DomainList';
+import NewPhishingForm from './views/NewPhishingForm';
 
 function App() {
   const { isLoading } = useAuth0();
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/domains" element={<DomainList />} />
+        <Route path="/newphishing" element={<NewPhishingForm />} />
       </Routes>
     </BrowserRouter>
   );

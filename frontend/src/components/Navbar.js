@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 
 const Nav = styled.nav`
   background-color: #333;
@@ -24,6 +24,10 @@ const NavLink = styled(Link)`
   }
 `;
 
+const RedNavLink = styled(NavLink)`
+  color: red;
+`;
+
 const Message = styled.span`
   color: #fff;
   margin-right: 15px;
@@ -38,11 +42,19 @@ const NavBar = () => {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/profile">Profile</NavLink>
       <NavLink to="/domains">Domains</NavLink>
-      {isAuthenticated ? <Message>Logged in as {user.name}</Message> : <Message>Not logged in</Message>}
+      {isAuthenticated && (
+        <RedNavLink to="/newphishing">Submit New Phishing Domain</RedNavLink>
+      )}
+      {isAuthenticated ? (
+        <Message>Logged in as {user.name}</Message>
+      ) : (
+        <Message>Not logged in</Message>
+      )}
       {isAuthenticated ? <LogoutButton /> : <LoginButton />}
     </Nav>
   );
 };
 
 export default NavBar;
+
 
