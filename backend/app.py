@@ -49,12 +49,19 @@ def create_app(test_config=None):
     # Domain routes 
     @app.route('/domains') # GET - Domains
     def get_domains():
-        try:
-            domains = Domains.query.all()
-            return jsonify([domain.format() for domain in domains])
-    
-        except:
-            abort(422)
+        domains = Domains.query.all()
+        current_domains = paginate_phishings(request, domains)
+
+        if len(current_domains) == 0:
+            abort(404)
+
+        return jsonify(
+            {
+                "success": True,
+                "domains": current_domains,
+                "total_domains": len(Domains.query.all())
+                }
+            )
 
 
     @app.route('/domains/<int:id>') # GET - Domain id
@@ -259,7 +266,6 @@ def create_app(test_config=None):
         return jsonify({
             'message': 'Phishing domain deleted'
         }), 200
-
 
     # Articles routes
     @app.route('/articles') # GET - Articles
