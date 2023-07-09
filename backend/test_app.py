@@ -72,6 +72,27 @@ class DomainsTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
 
 
+## PATCH /domains/<id> route testing
+## Expected behaviour: It should fail due to lack of autorization header
+
+    def test_update_domain(self):
+        res = self.client().patch('/domains/1', json=self.new_domain)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+
+## DELETE /domains/<id> route testing
+## Expected behaviour: It should fail due to lack of autorization header
+
+    def test_delete_domain(self):
+        res = self.client().delete('/domains/1')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+
+
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
