@@ -33,6 +33,19 @@ class DomainsTestCase(unittest.TestCase):
             'create_date': '09-07-2023'
         }
 
+    # sample phishing for testing
+
+        self.phishing = {
+        "description": "Test phishing domain",
+        "domain_id": 1,
+        "ip": "192.1.1.1",
+        "is_dangerous": False,
+        "phishing_url": "www.testsite.cl",
+        "submited_by": "eduhb",
+        "create_date": "09-10-2023"
+    }
+    
+
 
     def tearDown(self):
         """Executed after reach test"""
@@ -142,14 +155,49 @@ class DomainsTestCase(unittest.TestCase):
         res = self.client().get('/phishing/count', headers=self.headers)
         self.assertEqual(res.status_code, 200)
 
+## Get /phishing/<id> route testing #
+## Expected behaviour: It should success and return a single phishing by using a search_tearm
+
+    def test_phishing_search(self):
+        """Test API can search phishing."""
+        print("Running test_phishing_search")
+        res = self.client().post('/phishing/search', json={'search_term': 'test'}, headers=self.headers)
+        self.assertEqual(res.status_code, 200)
+
+## Post /phishing route testing #
+## Expected behaviour: It should success and post a new phishing entry.
+
+    def test_add_phishing(self):
+        """Test API can create a phishing (POST request)"""
+        res = self.client().post('/phishing', json=self.phishing, headers=self.headers)
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 201)
+        self.assertIn('id', data)
 
 
+## Patch /phishing/<id> route testing #
+
+    def test_update_phishing(self):
+        """Test API can update an existing phishing (PATCH request)."""
+        res = self.client().patch('/phishing/1', json=self.phishing, headers=self.headers)
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['phishing']['description'], self.phishing['description'])
+        self.assertEqual(data['phishing']['phishing_url'], self.phishing['phishing_url'])
 
 
+## Delete /phishing/<id> route testing #
+
+    def test_delete_phishing(self):
+        """Test API can delete an existing phishing (DELETE request)."""
+        res = self.client().delete('/phishing/1', headers=self.headers)
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['message'], 'Phishing domain deleted')
 
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
 
 
