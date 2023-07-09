@@ -23,6 +23,11 @@ class DomainsTestCase(unittest.TestCase):
 
         pass 
 
+
+    # Domains route testing
+
+    ## GET /domains route testing ##
+
     def test_get_domains(self):
         res = self.client().get('/domains')
         data = json.loads(res.data)
@@ -30,6 +35,18 @@ class DomainsTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['domains'])
         self.assertTrue(data['total_domains'])
+
+
+## GET /domains/<id> route testing # 
+## Expected behaviour: It should fail due to lack of autorization header  
+
+    def test_get_domain_by_id(self):
+        res = self.client().get('/domains/1')
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], "False")
+        self.assertEqual(data['message'], 'Unauthorized')
+
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
