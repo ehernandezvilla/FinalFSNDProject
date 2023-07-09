@@ -56,7 +56,7 @@ class DomainsTestCase(unittest.TestCase):
         res = self.client().get('/domains/1')
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 401)
-        self.assertEqual(data['success'], "False")
+        self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Unauthorized')
 
 
