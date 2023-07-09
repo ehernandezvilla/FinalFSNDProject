@@ -18,6 +18,18 @@ class DomainsTestCase(unittest.TestCase):
         setup_db(self.app, self.database_path)
         self.db = db
 
+
+    # sample domain for testing
+
+        self.new_domain = {
+            'domain': 'falabella.com',
+            'description': 'Test domain falabella',
+            'is_active': True,
+            'is_verified': True,
+            'create_date': '09-07-2023'
+        }
+
+
     def tearDown(self):
         """Executed after reach test"""
 
@@ -48,6 +60,21 @@ class DomainsTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Unauthorized')
 
 
+
+## POST /domains route testing 
+## Expected behaviour: It should fail due to lack of autorization header
+
+    def test_create_domain(self):
+        res = self.client().post('/domains', json=self.new_domain)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+
+
+
 # Make the tests conveniently executable
 if __name__ == "__main__":
     unittest.main()
+
+

@@ -356,7 +356,7 @@ def create_app(test_config=None):
     @app.errorhandler(404) # Error handler for 404 not found
     def error404(error):
         return jsonify({
-            'success': 'False',
+            'success': False,
             'error': 404,
             'message': 'Not found'
         }), 404
@@ -364,7 +364,7 @@ def create_app(test_config=None):
     @app.errorhandler(401) # Error handler for 401 unauthorized
     def error401(error):
         return jsonify({
-            'success': 'False',
+            'success': False,
             'error': 401,
             'message': 'Unauthorized'
         }), 401
@@ -372,7 +372,7 @@ def create_app(test_config=None):
     @app.errorhandler(405) # Error handler for 405 method not allowed
     def error405(error):
         return jsonify({
-            'success': 'False',
+            'success': False,
             'error': 405,
             'message': 'Method not allowed'
             }), 405
@@ -380,7 +380,7 @@ def create_app(test_config=None):
     @app.errorhandler(422) # Error handler for 422 unprocessable entity
     def error422(error):
         return jsonify({
-            'success': 'False',
+            'success': False,
             'error': 422,
             'message': 'Unprocessable entity'
             }), 422
@@ -388,7 +388,7 @@ def create_app(test_config=None):
     @app.errorhandler(400) # Error handler for 400 bad request
     def error400(error):
         return jsonify({
-            'success': 'False',
+            'success': False,
             'error': 400,
             'message': 'Bad request'
             }), 400
