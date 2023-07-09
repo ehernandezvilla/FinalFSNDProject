@@ -13,6 +13,10 @@ class DomainsTestCase(unittest.TestCase):
         """Define test variables and initialize app."""
         self.app = create_app()
         self.client = self.app.test_client
+        self.headers = {
+            'Content-Type': 'application/json', 
+            'Authorization': f'Bearer {config("AUTH_TOKEN")}'
+        }
         self.database_name = config('DB_TEST_NAME')
         self.database_path = "postgresql://{}:{}@{}/{}".format('postgres', config('PASSWORD'), 'localhost:5432', self.database_name)
         setup_db(self.app, self.database_path)
@@ -91,6 +95,56 @@ class DomainsTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 401)
         self.assertEqual(data['success'], False)
+
+
+# Phishing route testing
+
+## GET /phishing route testing #
+## Expected behaviour: It should success and return all phishing entries.
+
+    def test_get_phishing(self):
+        res = self.client().get('/phishing')
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['phishings'])
+        self.assertTrue(data['total_phishings'])
+
+## GET /phishing/<id> route testing #
+## Expected behaviour: It should fail due to lack of autorization header
+
+    def test_get_phishing_by_id_unauthorized(self):
+        """Test API cannot get a single phishing by using it's id without valid token."""
+        res = self.client().get('/phishing/1')
+        self.assertEqual(res.status_code, 401)
+
+## Get /phishing/count route testing #
+## Expected behaviour: It should fail due to lack of autorization header
+
+    def test_phishing_count_unauthorized(self):
+        """Test API cannot count all phishing entries without valid token."""
+        res = self.client().get('/phishing/count')
+        self.assertEqual(res.status_code, 401)
+
+## Get /phishing/<id> route testing #
+## Expected behaviour: It should success and return a single phishing by using it's id.
+
+    def test_get_phishing_by_id(self):
+        """Test API can get a single phishing by using it's id."""
+        res = self.client().get('/phishing/1', headers=self.headers)
+        self.assertEqual(res.status_code, 200)
+
+## Get /phishing/count route testing #
+## Expected behaviour: It should success and return the total number of phishing entries.
+
+    def test_phishing_count(self):
+        """Test API can count all phishing entries."""
+        res = self.client().get('/phishing/count', headers=self.headers)
+        self.assertEqual(res.status_code, 200)
+
+
+
+
 
 
 
