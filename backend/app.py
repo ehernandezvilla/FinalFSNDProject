@@ -8,6 +8,8 @@ from models import db, setup_db, Domains, Phishing, Articles
 from flask import request
 from datetime import datetime
 from auth import AuthError, requires_auth
+from sqlalchemy import event, exc
+import psycopg2.extensions
 
 # Carga las variables de entorno desde el archivo .env
 load_dotenv()
@@ -50,24 +52,25 @@ def create_app(test_config=None):
         db.create_all()
 
     # Configurar el listener de ping
-    from sqlalchemy import event
-    from sqlalchemy import exc
 
-
+    # Configurar el listener de ping
     def ping_listener(dbapi_connection, connection_record, connection_proxy):
-        if isinstance(dbapi_connection, sqlalchemy.engine.pg8000.Pg8000Connection):
+        if isinstance(dbapi_connection, psycopg2.extensions.connection):
             try:
-                dbapi_connection.ping()
-            except exc.DBAPIError as err:
-                if err.connection_invalidated:
-                    # Reconectar si la conexión se invalida
+                # Ejecutar una consulta simple para verificar la conexión
+                with dbapi_connection.cursor() as cursor:
+                    cursor.execute("SELECT 1")
+                    cursor.fetchone()
+
+            except psycopg2.Error as err:
+                if err.pgcode in ['57P01', '08006', '08003']:
+                    # Reconectar si la conexión se ha perdido o se ha cerrado
                     connection_proxy._pool.dispose()
                     raise exc.DisconnectionError()
+
         else:
             connection_proxy._pool.dispose()
             raise exc.DisconnectionError()
-
-        event.listen(db.engine, "checkout", ping_listener)
 
     # Create the routes
 
@@ -302,7 +305,12 @@ def create_app(test_config=None):
     def get_articles():
         try:
             articles = Articles.query.all()
-            return jsonify([article.format() for article in articles])
+            articles_list = [article.format() for article in articles]
+            return jsonify({
+                'success': True,
+                'articles': articles_list,
+                'total_articles': len(articles_list)
+            })
         except:
             abort(404)
     
