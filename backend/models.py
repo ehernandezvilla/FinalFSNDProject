@@ -18,10 +18,11 @@ database_path = "postgresql://{}:{}@{}/{}".format(os.getenv('DB_USER'), os.geten
 
 def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     db.app = app
     # db.drop_all() Elimina las tablas existentes en la bd cada vez que se llama a setup_db > Se comenta por error en unittest
-    db.create_all()
+    with app.app_context():
+        db.create_all()
 
 class Domains(db.Model):
     __tablename__ = 'domains'
