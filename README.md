@@ -1,4 +1,4 @@
-# Flask Server with React Front-end
+# Flask project for full stack nanodegree certification (ehernandezvilla)
 
 This repository contains a Flask server that serves as the backend API and a React front-end for the web application.
 
@@ -6,6 +6,7 @@ This repository contains a Flask server that serves as the backend API and a Rea
 
 - Python >3.7
 - Node.js
+- Please check other requirements in each folder (backend and frontend)
 
 ## Project Structure
 
