@@ -151,8 +151,6 @@ The app handles various error scenarios and returns appropriate error responses 
 - 422: Unprocessable Entity
 - 500: Internal Server Error
 
-Please refer to the [API documentation](API.md) for detailed information about each route, including request/response examples.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
