@@ -164,6 +164,11 @@ The app handles various error scenarios and returns appropriate error responses 
 - 422: Unprocessable Entity
 - 500: Internal Server Error
 
+
+# Testing 
+
+For testing the proyect uses unittest. You can find all the info in the test_app file. 
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
