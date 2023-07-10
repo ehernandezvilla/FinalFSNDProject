@@ -11,7 +11,8 @@ from sqlalchemy.schema import FetchedValue
 db = SQLAlchemy()
 
 database_name = os.getenv('DB_NAME')
-database_path = "postgresql://{}:{}@{}/{}".format('postgres', os.getenv('PASSWORD'), 'localhost:5432', database_name)
+# database_path = "postgresql://{}:{}@{}/{}".format('postgres', os.getenv('PASSWORD'), 'localhost:5432', database_name)
+database_path = os.getenv('EXTERNAL_PATH_RENDER')
 
 ## Setup DB(app) bind the flask app with SQLAlchemy
 
