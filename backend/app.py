@@ -305,14 +305,12 @@ def create_app(test_config=None):
     def get_articles():
         try:
             articles = Articles.query.all()
-            articles_list = [article.format() for article in articles]
-            return jsonify({
-                'success': True,
-                'articles': articles_list,
-                'total_articles': len(articles_list)
-            })
+            if not articles:
+                abort(404)  # Si no se encuentran artículos, devolver error 404
+
+            return jsonify([article.format() for article in articles])
         except:
-            abort(404)
+            abort(500)  # Si hay algún otro error, devolver error 500
     
     @app.route('/articles/<int:id>') # GET - Articles id
     @requires_auth('get:articles') # User
