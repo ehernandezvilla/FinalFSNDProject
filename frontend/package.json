@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' CI= react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -31,9 +31,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.16.5",
     "browserslist": "^4.21.9"
-  },
-  "engines": {
-    "node": "14.x"
   }
 }
+
 
