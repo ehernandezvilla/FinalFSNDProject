@@ -3,7 +3,6 @@ from dotenv import load_dotenv # Load enviroment variables
 import json
 from flask import request, abort, jsonify
 from functools import wraps
-#from jose import jwt changes for render deployment
 from jose import jwt
 from urllib.request import urlopen
 
@@ -20,7 +19,6 @@ class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
-    
 
 # Auth Header
 
