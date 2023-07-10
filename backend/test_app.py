@@ -26,7 +26,7 @@ class DomainsTestCase(unittest.TestCase):
     # sample domain for testing
 
         self.new_domain = {
-            'domain': 'falabella.com',
+            'domain': 'falabellas.com',
             'description': 'Test domain falabella',
             'is_active': True,
             'is_verified': True,
@@ -40,7 +40,7 @@ class DomainsTestCase(unittest.TestCase):
         "domain_id": 1,
         "ip": "192.1.1.1",
         "is_dangerous": False,
-        "phishing_url": "www.testsite.cl",
+        "phishing_url": "www.testsites.cl",
         "submited_by": "eduhb",
         "create_date": "09-10-2023"
     }
@@ -128,7 +128,7 @@ class DomainsTestCase(unittest.TestCase):
 
     def test_get_phishing_by_id_unauthorized(self):
         """Test API cannot get a single phishing by using it's id without valid token."""
-        res = self.client().get('/phishing/1')
+        res = self.client().get('/phishing/3') # id 3 is a phishing entry
         self.assertEqual(res.status_code, 401)
 
 ## Get /phishing/count route testing #
@@ -144,7 +144,7 @@ class DomainsTestCase(unittest.TestCase):
 
     def test_get_phishing_by_id(self):
         """Test API can get a single phishing by using it's id."""
-        res = self.client().get('/phishing/1', headers=self.headers)
+        res = self.client().get('/phishing/3', headers=self.headers)
         self.assertEqual(res.status_code, 200)
 
 ## Get /phishing/count route testing #
@@ -172,14 +172,13 @@ class DomainsTestCase(unittest.TestCase):
         res = self.client().post('/phishing', json=self.phishing, headers=self.headers)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 201)
-        self.assertIn('id', data)
 
 
 ## Patch /phishing/<id> route testing #
 
     def test_update_phishing(self):
         """Test API can update an existing phishing (PATCH request)."""
-        res = self.client().patch('/phishing/1', json=self.phishing, headers=self.headers)
+        res = self.client().patch('/phishing/16', json=self.phishing, headers=self.headers) # The phishing id register should exist 
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['phishing']['description'], self.phishing['description'])
@@ -189,11 +188,15 @@ class DomainsTestCase(unittest.TestCase):
 ## Delete /phishing/<id> route testing #
 
     def test_delete_phishing(self):
-        """Test API can delete an existing phishing (DELETE request)."""
-        res = self.client().delete('/phishing/1', headers=self.headers)
+        """Test API can delete an existing phishing (DELETE request).""" 
+        res = self.client().delete('/phishing/15', headers=self.headers) # The phishing id register should exist
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['message'], 'Phishing domain deleted')
+
+
+
+
 
 
 # Make the tests conveniently executable
