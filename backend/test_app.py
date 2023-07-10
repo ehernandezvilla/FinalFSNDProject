@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 import unittest
 import json
 from app import db 
@@ -44,8 +45,18 @@ class DomainsTestCase(unittest.TestCase):
         "submited_by": "eduhb",
         "create_date": "09-10-2023"
     }
-    
+        
+    # sample article for testing
 
+        self.article_data = { # Este es un ejemplo de datos para usar en las pruebas
+            'title': 'Test Article',
+            'description': 'This is a test article',
+            'url': 'https://testarticle.com',
+            'submited_by': 'Tester',
+            'domain_id': 1,
+            'create_date': '07-07-2023'
+        }
+    
 
     def tearDown(self):
         """Executed after reach test"""
@@ -195,7 +206,80 @@ class DomainsTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Phishing domain deleted')
 
 
+# Articles route testing 
 
+## GET /articles route testing 
+
+    def test_get_articles(self):
+        res = self.client().get('/articles')
+        self.assertEqual(res.status_code, 200)
+
+## GET /articles/<id> route testing 
+
+    def test_get_article_by_id(self):
+        """Test API can get a single phishing by using it's id."""
+        res = self.client().get('/articles/2', headers=self.headers)
+        self.assertEqual(res.status_code, 200)
+
+## POST /articles route testing 
+
+    def test_post_article(self):
+        res = self.client().post('/articles', json=self.article_data, headers=self.headers)
+        self.assertEqual(res.status_code, 201)
+
+
+## PATCH /articles/<id> route testing 
+
+    def test_update_article(self):
+        article = Articles(title=self.article_data['title'], 
+                        description=self.article_data['description'], 
+                        url=self.article_data['url'], 
+                        submited_by=self.article_data['submited_by'], 
+                        domain_id=self.article_data['domain_id'], 
+                        create_date=datetime.strptime(self.article_data['create_date'], '%d-%m-%Y'))
+    
+        db.session.add(article)
+        db.session.commit()
+    
+        res = self.client().patch(f'/articles/{article.id}', 
+                                json={'title': 'Updated Test Article',
+                                        'description': 'Updated Description',
+                                        'url': 'https://updatedurl.com',
+                                        'submited_by': 'Updated Tester',
+                                        'domain_id': 2,
+                                        'create_date': '09-10-2023'},
+                                headers=self.headers)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['article']['title'], 'Updated Test Article')
+        self.assertEqual(data['article']['description'], 'Updated Description')
+        self.assertEqual(data['article']['url'], 'https://updatedurl.com')
+        self.assertEqual(data['article']['submited_by'], 'Updated Tester')
+        self.assertEqual(data['article']['domain_id'], 2)
+        self.assertEqual(data['article']['create_date'], '2023-10-09 00:00:00')
+
+## Delete /articles/<id> route testing 
+
+    def test_delete_article(self):
+        article = Articles(title=self.article_data['title'], 
+                        description=self.article_data['description'], 
+                        url=self.article_data['url'], 
+                        submited_by=self.article_data['submited_by'], 
+                        domain_id=self.article_data['domain_id'], 
+                        create_date=datetime.strptime(self.article_data['create_date'], '%d-%m-%Y'))
+    
+        db.session.add(article)
+        db.session.commit()
+
+        res = self.client().delete(f'/articles/{article.id}', headers=self.headers)
+        data = json.loads(res.data)
+
+        article = Articles.query.get(article.id)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['message'], 'Article deleted')
+        self.assertEqual(article, None)
 
 
 
