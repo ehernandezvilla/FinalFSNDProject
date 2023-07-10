@@ -69,4 +69,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### Hello
+### IMPORTANT 
+
+The code includes the possibility of visualization of the JWT from the profile component. Please don't consider this in production due to security reasons. 
+
+You will need to create and assign your permission structure from Auth0.
+
+Create a .env file for the variables:
+
+- REACT_APP_DOMAIN (your auth0 domain)
+- REACT_APP_CLIENT_ID (your auth0 client_id)
+- REACT_APP_AUDIENCE (your auth0 audience)
