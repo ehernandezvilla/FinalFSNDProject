@@ -19,6 +19,7 @@ These instructions will help you set up and run the Flask app on your local mach
 ## Variables for .env file
 
 PASSWORD: your postgres db passwd
+DB_USER: your posgres db user
 DB_NAME: your postgres db table name
 DB_TEST_NAME: your postgres db table test name (for testing)
 AUTH0_DOMAIN: auth0 domain

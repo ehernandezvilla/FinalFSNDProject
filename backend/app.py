@@ -12,7 +12,7 @@ from auth import AuthError, requires_auth
 
 
 database_name = config('DB_NAME')
-database_path = "postgresql://{}:{}@{}/{}".format('postgres', config('PASSWORD'), 'localhost:5432', database_name)
+database_path = "postgresql://{}:{}@{}/{}".format(config('DB_USER'), config('PASSWORD'), 'localhost:5432', database_name)
 
 
 PHISHING_PER_PAGE = 10
