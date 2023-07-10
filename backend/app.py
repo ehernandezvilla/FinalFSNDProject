@@ -35,10 +35,12 @@ def create_app(test_config=None):
     app = Flask(__name__)
     app.app_context().push()
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     CORS(app)
     migrate = Migrate(app, db, render_as_batch=False)  
     db.init_app(app)
+    with app.app_context():
+        db.create_all()
 
     # Create the routes
 
