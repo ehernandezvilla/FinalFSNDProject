@@ -1,6 +1,6 @@
 # Browsers that are supported in production
 > 0.2%
-not dead
+maintained node versions
 not op_mini all
 
 # Browsers that are supported in development
