@@ -1,0 +1,581 @@
+{
+	"info": {
+		"_postman_id": "e829986d-1cf1-42d0-a9c3-c42a824ce1b4",
+		"name": "FinalFSND Project_Render",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26722807"
+	},
+	"item": [
+		{
+			"name": "Domains",
+			"item": [
+				{
+					"name": "GET /domains",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/domains",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"domains"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /domains/<id>",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/domains/1",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"domains",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /domains",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"create_date\":\"10-09-2023\",\r\n    \"description\":\"Ejemplo de dominio 2\",\r\n    \"domain\":\"ripley.cl\",\r\n    \"is_active\":true,\r\n    \"is_verified\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/domains",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"domains"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /domains",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"create_date\": \"09-10-2023\",\r\n        \"description\": \"Ejemplo de dominio modificado\",\r\n        \"domain\": \"ripley.cl\",\r\n        \"is_active\": true,\r\n        \"is_verified\": true\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/domains/6",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"domains",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL /domains",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/domains/6",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"domains",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Articles",
+			"item": [
+				{
+					"name": "GET /articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/articles",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /articles/<id>",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/articles/1",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /articles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"create_date\":\"10-07-2023\",\r\n    \"description\":\"Articulo de prueba\",\r\n    \"domain_id\":1,\"id\":1,\r\n    \"submited_by\":\"eduhv\",\r\n    \"title\":\"Articulo de prueba 2\",\r\n    \"url\":\"http://example.com/articulos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/articles",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /articles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"create_date\": \"10-09-2023\",\r\n        \"description\": \"Articulo de prueba\",\r\n        \"domain_id\": 1,\r\n        \"submited_by\": \"eduhv\",\r\n        \"title\": \"Articulo de prueba 3\",\r\n        \"url\": \"http://example.com/articulos\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/articles/3",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"articles",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL /articles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/articles/3",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"articles",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Phishing",
+			"item": [
+				{
+					"name": "GET /phishing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/articles",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /phishing/<id>",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/phishing/1",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"phishing",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /phishing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"create_date\": \"09-10-2023\",\r\n    \"description\": \"Ejemplo de phishing 2\",\r\n    \"domain_id\": 1,\r\n    \"ip\": \"192.168.1.100\",\r\n    \"is_dangerous\": true,\r\n    \"phishing_url\": \"http://phishing-examples.com\",\r\n    \"submited_by\": \"UsuarioEjemplo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/phishing",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"phishing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /phishing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"create_date\": \"09-10-2023\",\r\n        \"description\": \"Ejemplo de phishing modificado\",\r\n        \"domain_id\": 1,\r\n        \"ip\": \"192.168.1.100\",\r\n        \"is_dangerous\": true,\r\n        \"phishing_url\": \"http://phishing-examples.com\",\r\n        \"submited_by\": \"UsuarioEjemplo\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/phishing/2",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"phishing",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /phishing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://fsnd-backend-deployment.onrender.com/phishing/2",
+							"protocol": "https",
+							"host": [
+								"fsnd-backend-deployment",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"phishing",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5KUEV0V2xEcTREMHp4MUZINXRraiJ9.eyJpc3MiOiJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NDNkYmMxMTNjNDVjMjRjYjBiNTI3ZjkiLCJhdWQiOlsiaW1hZ2UiLCJodHRwczovL2Rldi15azd5NmtvcTZuY2k0ZHg4LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODkwMTkyOTYsImV4cCI6MTY4OTEwNTY5NiwiYXpwIjoiOGE2Vkt0TlBONmFHMk5Ra2E5SGJZVlVrMW9KQUJQQWwiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFydGljbGVzIiwiZGVsZXRlOmRvbWFpbnMiLCJkZWxldGU6cGhpc2hpbmciLCJnZXQ6YXJ0aWNsZXMiLCJnZXQ6ZG9tYWlucyIsImdldDpwaGlzaGluZyIsInBhdGNoOmFydGljbGVzIiwicGF0Y2g6ZG9tYWlucyIsInBhdGNoOnBoaXNoaW5nIiwicG9zdDphcnRpY2xlcyIsInBvc3Q6ZG9tYWlucyIsInBvc3Q6cGhpc2hpbmciXX0.D_qKvXdiEq60qTJXYUE4LELD4HmlV_Swr1AOJ1YAB86fxNwwZahRMjR58Wk18hOzuAgpma6nUHPmieZwCg38sckFuziJovgXzlNellvlOJ2rUMCFC8gIhSJtYJlmI3whc-KBl2wwYMjboPljlGBaRWoY5YSIxMsJ6vddeHwlUvlPuX0iZ1BgaFfwwv721InRsaGRjWssXhBXgmd5fKDJ_zaWRo7iEkZQWu9nU9_NDx4_SPQy8AjIMScZnNQPlqbL5W_5KgjLs5y09Sycqu_E0-Ci6-wgX9ooRv7zhDMv0mim8ovomdSIqY4v5FWMSfv828JQFrns3ZTIv85uhP9gmg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
