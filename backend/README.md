@@ -14,6 +14,19 @@ These instructions will help you set up and run the Flask app on your local mach
 
 - Python 3.x
 - Pip package manager
+- Create and fill a .env with the following variables
+
+## Variables for .env file
+
+PASSWORD: your postgres db passwd
+DB_NAME: your postgres db table name
+DB_TEST_NAME: your postgres db table test name (for testing)
+AUTH0_DOMAIN: auth0 domain
+API_AUDIENCE: auth0 audience
+AUTH_TOKEN: auth token
+
+The user name for the db should be 'postgres' in case you need to change it please modify it in app.py path route.
+
 
 ### Installation
 
