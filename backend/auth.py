@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv # Load enviroment variables
 import json
 from decouple import config # Used for enviroment variables in replace of pyenv
 from flask import request, abort, jsonify
@@ -8,9 +10,9 @@ from urllib.request import urlopen
 
 # Auth0 Config
 
-AUTH0_DOMAIN = config('AUTH0_DOMAIN')
+AUTH0_DOMAIN = os.getenv('AUTH0_DOMAIN')
 ALGORITHMS = ['RS256']
-API_AUDIENCE = config('API_AUDIENCE')
+API_AUDIENCE = os.getenv('API_AUDIENCE')
 
 # AutError Exception
 
