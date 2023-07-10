@@ -13,7 +13,7 @@ from auth import AuthError, requires_auth
 load_dotenv()
 
 database_name = os.getenv('DB_NAME')
-database_path = "postgresql://{}:{}@{}/{}".format('postgres', os.getenv('PASSWORD'), os.getenv('HOSTNAME'), database_name) # default 'localhost:5432'
+database_path = "postgresql://{}:{}@{}/{}".format(os.getenv('DB_USER'), os.getenv('PASSWORD'), os.getenv('HOSTNAME'), database_name) # default 'localhost:5432'
 # database_path = os.getenv('EXTERNAL_PATH_RENDER')
 
 PHISHING_PER_PAGE = 10
