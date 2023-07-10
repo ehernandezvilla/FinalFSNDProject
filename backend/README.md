@@ -1,71 +1,158 @@
-# FSND Final Project - Antiscam
+# FSND Final Project - ehernandezvilla
 
-This project is associated with the final part of the full stack nanodegree on Udacity
+This project is associated with the final part of the full stack nanodegree on Udacity. 
 
-## Installation
+# Flask App Documentation
 
-Make sure you have Python and the necessary dependencies installed.
+This Flask app provides routes for managing domains, phishing domains, and articles. It includes various endpoints for creating, retrieving, updating, and deleting data related to domains, phishing domains, and articles.
 
-1. Clone the repository: git clone https://github.com/your_username/your_repository.git
-2. Navigate to the project directory: cd your_repository
-3. Install the dependencies: pip install -r requirements.txt
+## Getting Started
 
-## Usage
+These instructions will help you set up and run the Flask app on your local machine for development and testing purposes.
 
-1. Run the application: python app.py
+### Prerequisites
 
-2. Access the application in your web browser at the following address:
+- Python 3.x
+- Pip package manager
 
-## Endpoints
+### Installation
 
-The following are the available endpoints in the application:
+1. Clone the repository:
 
-### Get all domains
 
-- Method: GET
-- Route: `/domains`
-- Description: Returns a list of all domains available in the database.
-- Query Parameters: None
-- Successful Response:
-- Code: 200 OK
-- Content: JSON with the list of domains and their formats.
+2. Change into the project directory:
 
-### Get a specific domain
 
-- Method: GET
-- Route: `/domains/<int:id>`
-- Description: Returns the information of a specific domain.
-- Query Parameters: `id` (integer) - Domain identifier.
-- Successful Response:
-- Code: 200 OK
-- Content: JSON with the domain information and its format.
+3. Install the required dependencies:
 
-### Get all phishing
 
-- Method: GET
-- Route: `/phishing`
-- Description: Returns a list of all phishing records available in the database.
-- Query Parameters: None
-- Successful Response:
-- Code: 200 OK
-- Content: JSON with the list of phishing records and their formats.
+### Configuration
 
-### Get all articles
+Before running the app, make sure to set the following environment variables:
 
-- Method: GET
-- Route: `/articles`
-- Description: Returns a list of all articles available in the database.
-- Query Parameters: None
-- Successful Response:
-- Code: 200 OK
-- Content: JSON with the list of articles and their formats.
+- `DATABASE_URL`: The URL of the database (e.g., PostgreSQL, MySQL) where the app will store data.
+
+### Running the App
+
+To run the app, execute the following command: python3 -m flask run 
+
+By default, the app will be accessible at `http://localhost:5000/`.
+
+## Routes
+
+### Home Route
+
+- `GET /`
+
+  Retrieves the home page of the FSND home project.
+
+### Domains Routes
+
+- `GET /domains`
+
+  Retrieves a paginated list of domains.
+
+- `GET /domains/<id>`
+
+  Retrieves a specific domain by its ID.
+
+- `POST /domains`
+
+  Creates a new domain.
+
+- `PATCH /domains/<id>`
+
+  Updates a specific domain by its ID.
+
+- `DELETE /domains/<id>`
+
+  Deletes a specific domain by its ID.
+
+### Phishing Routes
+
+- `GET /phishing`
+
+  Retrieves a paginated list of phishing domains.
+
+- `GET /phishing/<id>`
+
+  Retrieves a specific phishing domain by its ID.
+
+- `GET /phishing/count`
+
+  Retrieves the total count of phishing domains.
+
+- `POST /phishing/search`
+
+  Searches for phishing domains based on a search term.
+
+- `POST /phishing`
+
+  Creates a new phishing domain.
+
+- `PATCH /phishing/<id>`
+
+  Updates a specific phishing domain by its ID.
+
+- `DELETE /phishing/<id>`
+
+  Deletes a specific phishing domain by its ID.
+
+### Articles Routes
+
+- `GET /articles`
+
+  Retrieves a list of articles.
+
+- `GET /articles/<id>`
+
+  Retrieves a specific article by its ID.
+
+- `POST /articles`
+
+  Creates a new article.
+
+- `PATCH /articles/<id>`
+
+  Updates a specific article by its ID.
+
+- `DELETE /articles/<id>`
+
+  Deletes a specific article by its ID.
+
+## Authentication and Authorization
+
+Some routes require authentication and authorization. The following permissions are available:
+
+- `get:domains`: Read access to domains.
+- `post:domains`: Create access to domains.
+- `patch:domains`: Update access to domains.
+- `delete:domains`: Delete access to domains.
+- `get:phishing`: Read access to phishingdomains.
+- `post:phishing`: Create access to phishing domains.
+- `patch:phishing`: Update access to phishing domains.
+- `delete:phishing`: Delete access to phishing domains.
+- `get:articles`: Read access to articles.
+- `post:articles`: Create access to articles.
+- `patch:articles`: Update access to articles.
+- `delete:articles`: Delete access to articles.
+
+To access routes that require authentication and authorization, include a valid JWT (JSON Web Token) in the `Authorization` header of the request.
+
+## Error Handling
+
+The app handles various error scenarios and returns appropriate error responses with corresponding status codes and error messages.
+
+- 400: Bad Request
+- 401: Unauthorized
+- 403: Forbidden
+- 404: Not Found
+- 405: Method Not Allowed
+- 422: Unprocessable Entity
+- 500: Internal Server Error
+
+Please refer to the [API documentation](API.md) for detailed information about each route, including request/response examples.
 
 ## License
 
-Specify the license under which the project is distributed. For example:
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-If you want to contact me you can do it at ehernandezvilla@gmail.com
+This project is licensed under the [MIT License](LICENSE).
