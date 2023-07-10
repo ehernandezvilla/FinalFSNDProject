@@ -1,5 +1,5 @@
 import os
-from decouple import config # Used for enviroment variables in replace of pyenv
+from dotenv import load_dotenv # Load enviroment variables
 from flask import Flask, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -7,12 +7,13 @@ from flask_cors import CORS
 from models import db, setup_db, Domains, Phishing, Articles
 from flask import request
 from datetime import datetime
-
 from auth import AuthError, requires_auth
 
+# Carga las variables de entorno desde el archivo .env
+load_dotenv()
 
-database_name = config('DB_NAME')
-database_path = "postgresql://{}:{}@{}/{}".format(config('DB_USER'), config('PASSWORD'), 'localhost:5432', database_name)
+database_name = os.getenv('DB_NAME')
+database_path = "postgresql://{}:{}@{}/{}".format(os.getenv('DB_USER'), os.getenv('PASSWORD'), 'localhost:5432', database_name)
 
 
 PHISHING_PER_PAGE = 10

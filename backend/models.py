@@ -1,6 +1,7 @@
+import os 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, DateTime
-from decouple import config # Used for enviroment variables
+from dotenv import load_dotenv # Load environment variables
 import datetime
 from sqlalchemy import Column, Integer, String, DateTime, TIMESTAMP, text
 from sqlalchemy.sql import text, func 
@@ -9,8 +10,8 @@ from sqlalchemy.schema import FetchedValue
 
 db = SQLAlchemy()
 
-database_name = config('DB_NAME')
-database_path = "postgresql://{}:{}@{}/{}".format('postgres', config('PASSWORD'), 'localhost:5432', database_name)
+database_name = os.getenv('DB_NAME')
+database_path = "postgresql://{}:{}@{}/{}".format('postgres', os.getenv('PASSWORD'), 'localhost:5432', database_name)
 
 ## Setup DB(app) bind the flask app with SQLAlchemy
 
