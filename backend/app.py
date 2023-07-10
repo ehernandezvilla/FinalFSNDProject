@@ -36,11 +36,38 @@ def create_app(test_config=None):
     app.app_context().push()
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+    # Configuraciones adicionales del pool y manejo de desconexiones
+    app.config["SQLALCHEMY_POOL_SIZE"] = 10
+    app.config["SQLALCHEMY_POOL_TIMEOUT"] = 30
+    app.config["SQLALCHEMY_POOL_RECYCLE"] = 1800
     CORS(app)
-    migrate = Migrate(app, db, render_as_batch=False)  
+
+    # Inicializar extensiones 
     db.init_app(app)
+    migrate = Migrate(app, db, render_as_batch=False) 
+
     with app.app_context():
         db.create_all()
+
+    # Configurar el listener de ping
+    from sqlalchemy import event
+    from sqlalchemy import exc
+
+
+    def ping_listener(dbapi_connection, connection_record, connection_proxy):
+        if isinstance(dbapi_connection, sqlalchemy.engine.pg8000.Pg8000Connection):
+            try:
+                dbapi_connection.ping()
+            except exc.DBAPIError as err:
+                if err.connection_invalidated:
+                    # Reconectar si la conexión se invalida
+                    connection_proxy._pool.dispose()
+                    raise exc.DisconnectionError()
+        else:
+            connection_proxy._pool.dispose()
+            raise exc.DisconnectionError()
+
+        event.listen(db.engine, "checkout", ping_listener)
 
     # Create the routes
 
