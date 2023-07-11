@@ -13,11 +13,41 @@ This repository contains a Flask server that serves as the backend API and a Rea
 - `backend/` - Contains the Flask server code and API endpoints.
 - `frontend/` - Contains the React front-end code.
 - `README.md` - This file.
-
 ## Usage
 
-- The Flask server serves the API endpoints that the React front-end interacts with.
-- The React front-end can be accessed in the browser at `http://localhost:3000`.
+- The Flask server serves the API endpoints that the React front-end interacts with, the address to access it is: https://fsnd-backend-deployment.onrender.com/
+- The React front-end can be accessed in the browser at: https://main--phenomenal-stroopwafel-2ae3d2.netlify.app/
+
+## Users
+
+For the authentication the users are:
+
+name: user
+email: user@test.cl
+passwd: 11#i9Hpk2b
+permissions:
+get:articles
+get:domains
+get:phishing
+
+--
+
+name: admin 
+email: admin@test.cl
+passwd: !2gi8P3168
+permissions:
+delete:articles
+delete:domains
+delete:phishing
+get:articles
+get:domains
+get:phishing
+patch:articles
+patch:domains
+patch:phishing
+post:articles
+post:domains
+post:phishing
 
 ## IMPORTANT
 
