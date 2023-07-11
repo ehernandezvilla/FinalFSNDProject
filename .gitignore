@@ -23,3 +23,6 @@ data.sql
 
 __pycache__/
 
+# users
+
+users.txt
