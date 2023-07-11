@@ -17,7 +17,7 @@ const DomainList = () => {
   const getDomains = async () => {
     try {
       const token = await getAccessTokenSilently();
-      const response = await fetch("http://127.0.0.1:5000/domains", {
+      const response = await fetch(process.env.REACT_APP_DOMAINS_URL, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

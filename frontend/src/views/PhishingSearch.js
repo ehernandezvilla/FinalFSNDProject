@@ -14,7 +14,7 @@ const PhishingSearch = () => {
 
     try {
       const response = await axios.post(
-        'http://127.0.0.1:5000/phishing/search',
+        process.env.REACT_APP_PHISHING_SEARCH_UR,
         { search_term: searchTerm },
         { headers: { 'Content-Type': 'application/json' } }
       );

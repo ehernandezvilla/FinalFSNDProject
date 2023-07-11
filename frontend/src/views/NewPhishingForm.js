@@ -62,7 +62,7 @@ const NewPhishingForm = () => {
       const formattedDate = createDate.replace(/\//g, '-'); // Reemplazar barras (/) por guiones (-) en la fecha
 
       const response = await axios.post(
-        'http://127.0.0.1:5000/phishing',
+        process.env.REACT_APP_PHISHING_URL,
         {
           domain_id: domainId,
           description: description,

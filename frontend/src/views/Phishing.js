@@ -12,7 +12,7 @@ const Phishing = () => {
   useEffect(() => {
     const fetchPhishes = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/phishing', {
+        const response = await axios.get(process.env.REACT_APP_PHISHING_URL, {
           params: { page: currentPage },
         });
         setPhishes(response.data.phishings);
