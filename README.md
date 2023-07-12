@@ -20,7 +20,7 @@ This repository contains a Flask server that serves as the backend API and a Rea
 
 ## Users
 
-For the authentication the users are:
+For the authentication the users are (just for testing limited permissions):
 
 name: user
 email: user@test.cl
@@ -31,23 +31,6 @@ get:domains
 get:phishing
 
 --
-
-name: admin 
-email: admin@test.cl
-passwd: !2gi8P3168
-permissions:
-delete:articles
-delete:domains
-delete:phishing
-get:articles
-get:domains
-get:phishing
-patch:articles
-patch:domains
-patch:phishing
-post:articles
-post:domains
-post:phishing
 
 ## IMPORTANT
 
