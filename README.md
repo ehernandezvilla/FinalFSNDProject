@@ -1,4 +1,4 @@
-# Flask project for full stack nanodegree certification (ehernandezvilla)
+# Flask project: Flask & Node/React APP with Auth0
 
 This repository contains a Flask server that serves as the backend API and a React front-end for the web application.
 
