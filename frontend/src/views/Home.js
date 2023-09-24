@@ -17,7 +17,7 @@ const Home = () => {
     <div className="home-container">
       <div className="logo-container">
         <img src={logo} alt="Logo" className="logo" />
-        <h1>¡Hey! Welcome to the FSND home project!</h1>
+        <h1>Flask & React app with auth0</h1>
         <p>This is a simple app for registering dangerous (phishing) domains and compare them against their real domains.</p>
         <p><b>You can find the details of endpoints and auth structure in the README file. There's just a few of them considerer for the frontend.</b></p>
         <p>In some cases you'll need to be registered and authorized to use certain endpoints</p>
